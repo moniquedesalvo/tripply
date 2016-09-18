@@ -1,0 +1,57 @@
+body {
+	margin: 0px;
+	font-family: sans-serif;
+	color: #525252;
+}
+
+nav {
+	height: 75px;
+	background-color: #128fa9;
+}
+
+nav h1 {
+	margin: 0px;
+	padding-top: 20px;
+	padding-left: 20px;
+	font-family: sans-serif;
+	font-size: 36px;
+	color: #e3dfe1;
+	display: block;
+}
+
+#main {
+	width: 80%;
+	margin: auto;
+}
+
+#locations {
+	display: flex;
+}
+
+#location-section img {
+	height: 230px;
+	padding: 15px;
+}
+
+#location-section {
+	display: block;
+}
+
+.vacation-choice {
+	
+}
+
+.vacation-choice h3 {
+	padding-left: 15px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#attendee-section {
+	
+
+}
+
+#attendees {
+	
+}
