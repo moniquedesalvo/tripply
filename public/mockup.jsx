@@ -35,7 +35,6 @@ var Title = React.createClass({
 	}
 })
 
-
 var VacationChoices = React.createClass({
 	render: function () {
 
@@ -59,6 +58,50 @@ var VacationChoices = React.createClass({
 	}
 })
 
+var ChooseDestinations = React.createClass({
+
+
+	render: function () {
+
+		return (
+			<div id="choice-inputs">
+				<h2>Add up to three AirBnB URLs:</h2>
+				<h3>Choice 1: </h3><input type="text" size="50" ref="linkInput1"></input>
+				<h3>Choice 2: </h3><input type="text" size="50" ref="linkInput2"></input>
+				<h3>Choice 3: </h3><input type="text" size="50" ref="linkInput3"></input><br/>				
+				<button onClick={this.addLinks}>Add</button>
+			</div>
+		);
+	},
+
+	addLinks: function () {
+		var linkInput1 = this.refs.linkInput1;
+		var linkUrl1 = linkInput1.value;
+		var linkInput2 = this.refs.linkInput2;
+		var linkUrl2 = linkInput2.value;
+		var linkInput3 = this.refs.linkInput3;
+		var linkUrl3 = linkInput3.value;
+		$.getJSON( "airbnbInfo?url=" + linkUrl1, function( data ) {
+  			choices[0] = data;
+  			renderApp();
+		});
+		$.getJSON( "airbnbInfo?url=" + linkUrl2, function( data ) {
+  			choices[1] = data;
+  			renderApp();
+		});
+		$.getJSON( "airbnbInfo?url=" + linkUrl3, function( data ) {
+  			choices[2] = data;
+  			renderApp();	
+		});
+		linkInput1.value = "";
+		linkInput2.value = "";
+		linkInput3.value = "";
+	}
+});
+
+
+
+
 var App = React.createClass({
 	render: function () {
 		return (
@@ -66,11 +109,13 @@ var App = React.createClass({
 				<div id="location-section">
 					<Title />
 					<VacationChoices />
+					<ChooseDestinations />
 				</div>
 			</div>
 		)
 	}
-})
+});
+
 
 window.renderApp = function() {
   ReactDOM.render(<App />, document.getElementById("container"));
