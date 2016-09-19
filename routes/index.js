@@ -28,11 +28,11 @@ function getAirbnbListing(listingId, callback) {
         if (!error && response.statusCode == 200) {
             var parsedBody = JSON.parse(body)
             var choices = {
-            		location: parsedBody.listing.smart_location,
-            		price: parsedBody.listing.price_formatted,
-            		image: parsedBody.listing.picture_url,
-            		description: parsedBody.listing.name
-            };
+        		location: parsedBody.listing.smart_location,
+        		price: parsedBody.listing.price_formatted,
+        		image: parsedBody.listing.picture_url,
+        		description: parsedBody.listing.name
+        };
             callback(choices);
         }
     });

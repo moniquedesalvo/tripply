@@ -24,6 +24,36 @@ window.choices = [
 	}
 ];
 
+window.attendees = [
+	{
+		name: "Charlene",
+		status: "paid",
+		notes: "Room for 2 more in my car"
+	},
+	{
+		name: "Kiki",
+		status: "pay",
+		notes: "Leaving Saturday"
+	}
+];
+
+window.packing = [
+	{
+		thingsToBring: "Dinner Saturday",
+		whosBringingIt: "Gabe",
+		notes: "Carnitas!"
+	},
+	{
+		thingsToBring: "Settler's of Catan",
+		whosBringingIt: "Myshel",
+		notes: "Game night! Woooooo!"
+	},
+	{
+		thingsToBring: "Catnip",
+		whosBringingIt: "Charlene",
+		notes: "Meow"
+	} 
+];
 
 var Title = React.createClass({
 	render: function () {
@@ -59,16 +89,16 @@ var VacationChoices = React.createClass({
 })
 
 var ChooseDestinations = React.createClass({
-
-
 	render: function () {
 
 		return (
-			<div id="choice-inputs">
+			<div id="choice-input-section">
 				<h2>Add up to three AirBnB URLs:</h2>
-				<h3>Choice 1: </h3><input type="text" size="50" ref="linkInput1"></input>
-				<h3>Choice 2: </h3><input type="text" size="50" ref="linkInput2"></input>
-				<h3>Choice 3: </h3><input type="text" size="50" ref="linkInput3"></input><br/>				
+				<div id="choice-inputs">
+					<h3>Choice 1:</h3><input type="text" size="50" ref="linkInput1"></input>
+					<h3>Choice 2:</h3><input type="text" size="50" ref="linkInput2"></input>
+					<h3>Choice 3:</h3><input type="text" size="50" ref="linkInput3"></input><br/>
+				</div>				
 				<button onClick={this.addLinks}>Add</button>
 			</div>
 		);
@@ -99,8 +129,113 @@ var ChooseDestinations = React.createClass({
 	}
 });
 
+var AttendeesSection = React.createClass({
+	render: function () {
+		var attendeesElements = [];
+		for (var i = 0; i < attendees.length; i++) {
+			attendeesElements.push(
+				<tr>
+					<td>{attendees[i].name}</td>
+					<td>{attendees[i].status}</td> 
+					<td>{attendees[i].notes}</td>
+				</tr>
+        	)
+		}
+		return (
+			<div id="attendees-section">
+				<h2>Attendees:</h2>
+				<table>
+		            <tr>
+		            	<th>Name</th>
+		                <th>Status</th> 
+		                <th>Notes</th>
+		            </tr>
+					{attendeesElements}
+					<tr>
+						<td><input type="text" size="50" ref="nameInput"></input></td>
+						<td><input type="text" size="50" ref="statusInput"></input></td>
+						<td><input type="text" size="50" ref="notesInput"></input></td>
+					</tr>
+	            </table>
+	            <button onClick={this.addAttendees}>Add</button>
+          	</div>
+		)
+	},
 
+	addAttendees: function () {
+		var nameInput = this.refs.nameInput;
+		var nameText = nameInput.value;
+		var statusInput = this.refs.statusInput;
+		var statusText = statusInput.value;
+		var notesInput = this.refs.notesInput;
+		var notesText = notesInput.value;
+		attendees.push(
+			{
+				name: nameText,
+				status: statusText,
+				notes: notesText
+			}
+		)
+		nameInput.value = "";
+		statusInput.value = "";
+		notesInput.value = "";
+		renderApp();
+	}
+});
 
+var PackingSection = React.createClass({
+	render: function () {
+		var packingElements = [];
+		for (var i = 0; i < packing.length; i++) {
+			packingElements.push(
+				<tr>
+					<td>{packing[i].thingsToBring}</td>
+					<td>{packing[i].whosBringingIt}</td> 
+					<td>{packing[i].notes}</td>
+				</tr>
+        	)
+		}
+		return (
+			<div id="packing-section">
+				<h2>Packing:</h2>
+				<table>
+		            <tr>
+		            	<th>Things to Bring</th>
+		                <th>Who's Bringing It</th> 
+		                <th>Notes</th>
+		            </tr>
+					{packingElements}
+					<tr>
+						<td><input type="text" size="50" ref="thingsInput"></input></td>
+						<td><input type="text" size="50" ref="whoInput"></input></td>
+						<td><input type="text" size="50" ref="notesInput"></input></td>
+					</tr>
+	            </table>
+	            <button onClick={this.addToPacking}>Add</button>
+          	</div>
+		)
+	},
+
+	addToPacking: function () {
+		var thingsInput = this.refs.thingsInput;
+		var thingsText = thingsInput.value;
+		var whoInput = this.refs.whoInput;
+		var whoText = whoInput.value;
+		var notesInput = this.refs.notesInput;
+		var notesText = notesInput.value;
+		packing.push(
+			{
+				thingsToBring: thingsText,
+				whosBringingIt: whoText,
+				notes: notesText
+			}
+		)
+		thingsInput.value = "";
+		whoInput.value = "";
+		notesInput.value = "";
+		renderApp();
+	}
+});
 
 var App = React.createClass({
 	render: function () {
@@ -110,12 +245,13 @@ var App = React.createClass({
 					<Title />
 					<VacationChoices />
 					<ChooseDestinations />
+					<AttendeesSection />
+					<PackingSection />
 				</div>
 			</div>
 		)
 	}
 });
-
 
 window.renderApp = function() {
   ReactDOM.render(<App />, document.getElementById("container"));

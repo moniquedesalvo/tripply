@@ -47,11 +47,20 @@ nav h1 {
 	margin-bottom: 0px;
 }
 
-#attendee-section {
-	
-
+#attendees-section, #packing-section {
+	width: 80%;
+	margin: 0;
 }
 
-#attendees {
-	
+#attendees-section th, #packing-section th {
+	text-align: left;
 }
+
+#attendees-section table, #packing-section table {
+	width: 80%;
+}
+
+footer {
+	height: 500px;
+}
+
