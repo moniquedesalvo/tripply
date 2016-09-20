@@ -71,8 +71,8 @@ var VacationChoices = React.createClass({
 		var locationElements = [];
 		for (var i = 0; i < choices.length; i++) {
 			locationElements.push(
-				<div className="vacation-choice">
-					<h3>{choices[i].location} - {choices[i].price}</h3>
+				<div className="vacation-choice" key={i}>
+					<h3>{choices[i].location} - {choices[i].price} Per Night</h3>
 					<img src={choices[i].image}/>
 					<h3>{choices[i].description}</h3>
 					<h3>❤️ {choices[i].likes}</h3>
@@ -134,28 +134,26 @@ var AttendeesSection = React.createClass({
 		var attendeesElements = [];
 		for (var i = 0; i < attendees.length; i++) {
 			attendeesElements.push(
-				<tr>
-					<td>{attendees[i].name}</td>
-					<td>{attendees[i].status}</td> 
-					<td>{attendees[i].notes}</td>
-				</tr>
+				<AttendeesRow index={i} key={i}/>
         	)
 		}
 		return (
 			<div id="attendees-section">
 				<h2>Attendees:</h2>
 				<table>
-		            <tr>
-		            	<th>Name</th>
-		                <th>Status</th> 
-		                <th>Notes</th>
-		            </tr>
-					{attendeesElements}
-					<tr>
-						<td><input type="text" size="50" ref="nameInput"></input></td>
-						<td><input type="text" size="50" ref="statusInput"></input></td>
-						<td><input type="text" size="50" ref="notesInput"></input></td>
-					</tr>
+					<tbody>
+			            <tr>
+			            	<th>Name</th>
+			                <th>Status</th> 
+			                <th>Notes</th>
+			            </tr>
+						{attendeesElements}
+						<tr>
+							<td><input type="text" size="50" ref="nameInput"></input></td>
+							<td><input type="text" size="50" ref="statusInput"></input></td>
+							<td><input type="text" size="50" ref="notesInput"></input></td>
+						</tr>
+					</tbody>
 	            </table>
 	            <button onClick={this.addAttendees}>Add</button>
           	</div>
@@ -183,33 +181,79 @@ var AttendeesSection = React.createClass({
 	}
 });
 
+var AttendeesRow = React.createClass({
+	getInitialState: function () {
+		return {
+			isEditingName: false,
+			isEditingNotes: false
+		}
+	},
+	render: function () {
+		console.log(this.state)
+		var i = this.props.index;
+		if (this.state.isEditingName === true) {
+			var nameElement = <input type="text" size="50" ref="nameInput" defaultValue={attendees[i].name}></input>
+		} else {
+			nameElement = attendees[i].name;
+		}
+		return (
+			<tr>
+				<td onClick={this.toggleEditOn} onBlur={this.toggleEditOff}>{nameElement}</td>
+				<td onClick={this.togglePaid}>{attendees[i].status}</td> 
+				<td onClick={this.toggleEdit}>{attendees[i].notes}</td>
+			</tr>
+		)
+	},
+	togglePaid: function () {
+		var i = this.props.index;
+		if (attendees[i].status === "unpaid") {
+			attendees[i].status = "paid";
+		} else {
+			attendees[i].status = "unpaid";
+		}
+		renderApp();
+	},
+	toggleEditOn: function () {
+		if (!this.state.isEditingName) {
+			this.setState({isEditingName: true})
+		}
+	},
+	toggleEditOff: function () {
+		var i = this.props.index;
+		if (this.state.isEditingName) {
+			this.setState({isEditingName: false})
+			var nameInput = this.refs.nameInput;
+			var nameText = nameInput.value;
+			attendees[i].name = nameText;
+		}
+	}
+})
+
 var PackingSection = React.createClass({
 	render: function () {
 		var packingElements = [];
 		for (var i = 0; i < packing.length; i++) {
 			packingElements.push(
-				<tr>
-					<td>{packing[i].thingsToBring}</td>
-					<td>{packing[i].whosBringingIt}</td> 
-					<td>{packing[i].notes}</td>
-				</tr>
+				<PackingRow index={i} key={i}/>
         	)
 		}
 		return (
 			<div id="packing-section">
 				<h2>Packing:</h2>
 				<table>
-		            <tr>
-		            	<th>Things to Bring</th>
-		                <th>Who's Bringing It</th> 
-		                <th>Notes</th>
-		            </tr>
-					{packingElements}
-					<tr>
-						<td><input type="text" size="50" ref="thingsInput"></input></td>
-						<td><input type="text" size="50" ref="whoInput"></input></td>
-						<td><input type="text" size="50" ref="notesInput"></input></td>
-					</tr>
+					<tbody>
+			            <tr>
+			            	<th>Things to Bring</th>
+			                <th>Who's Bringing It</th> 
+			                <th>Notes</th>
+			            </tr>
+						{packingElements}
+						<tr>
+							<td><input type="text" size="50" ref="thingsInput"></input></td>
+							<td><input type="text" size="50" ref="whoInput"></input></td>
+							<td><input type="text" size="50" ref="notesInput"></input></td>
+						</tr>
+					</tbody>
 	            </table>
 	            <button onClick={this.addToPacking}>Add</button>
           	</div>
@@ -234,6 +278,19 @@ var PackingSection = React.createClass({
 		whoInput.value = "";
 		notesInput.value = "";
 		renderApp();
+	}
+});
+
+var PackingRow = React.createClass({
+	render: function () {
+		var i = this.props.index;
+		return (
+			<tr>
+				<td>{packing[i].thingsToBring}</td>
+				<td>{packing[i].whosBringingIt}</td> 
+				<td>{packing[i].notes}</td>
+			</tr>
+		)
 	}
 });
 
