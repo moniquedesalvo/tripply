@@ -198,7 +198,7 @@ var AttendeesRow = React.createClass({
 		}
 		return (
 			<tr>
-				<td onClick={this.toggleEditOn} onBlur={this.toggleEditOff}>{nameElement}</td>
+				<td onClick={this.toggleEditOn} onBlur={this.toggleEditOff} onKeyDown={this.keyDown}>{nameElement}</td>
 				<td onClick={this.togglePaid}>{attendees[i].status}</td> 
 				<td onClick={this.toggleEdit}>{attendees[i].notes}</td>
 			</tr>
@@ -225,6 +225,11 @@ var AttendeesRow = React.createClass({
 			var nameInput = this.refs.nameInput;
 			var nameText = nameInput.value;
 			attendees[i].name = nameText;
+		}
+	},
+	keyDown: function (event) {
+		if (event.keyCode === 13) {
+			this.toggleEditOff();
 		}
 	}
 })
