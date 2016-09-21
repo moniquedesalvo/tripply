@@ -2,6 +2,7 @@ body {
 	margin: 0px;
 	font-family: sans-serif;
 	color: #525252;
+	background-color: #F5F5F5;
 }
 
 nav {
@@ -19,6 +20,19 @@ nav h1 {
 	display: block;
 }
 
+td {
+	width: 500px;
+}
+
+input {
+	width: 80%;
+}
+
+input:focus {
+	border: 2px solid #128fa9;
+	outline: none;
+}
+
 #main {
 	width: 80%;
 	margin: auto;
@@ -30,15 +44,44 @@ nav h1 {
 
 #location-section img {
 	height: 230px;
-	padding: 15px;
 }
 
 #location-section {
 	display: block;
 }
 
-.vacation-choice {
-	
+.choice-img {
+	background-color: #e3dfe1;
+	margin: 15px;
+	width: 345px;
+	height: 230px;
+}
+
+.choice-img img {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#vchoice-edit-mode {
+	display: flex;
+	width: 80%;
+	margin: auto;
+}
+
+#location-section .vacation-choice .heart img {
+	height: 25px;
+	width: 25px;
+	padding: 2px 2px 0px 15px;
+}
+
+#location-section .vacation-choice .heart h3 {
+	padding-left: 10px;
+	padding-top: 5px;
+}
+
+#location-section .vacation-choice .heart {
+	display: flex;
 }
 
 .vacation-choice h3 {

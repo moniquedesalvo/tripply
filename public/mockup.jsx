@@ -6,21 +6,24 @@ window.choices = [
 		price: "$240",
 		image: "https://a2.muscache.com/im/pictures/3c8d3246-f27c-4044-9a2e-e0a6c78d5296.jpg?aki_policy=large",
 		description: "Gorgeous Ocen Front Property", 
-		likes: 2
+		likes: 2, 
+		link: ""
 	},
 	{
 		location: "Big Sur, CA",
 		price: "$355",
 		image: "https://a2.muscache.com/im/pictures/43006829/fbb07cff_original.jpg?aki_policy=large",
 		description: "4 Bedroom Cottage in the Woods",
-		likes: 5
+		likes: 5,
+		link: ""
 	},
 	{
 		location: "Monterey, CA",
 		price: "$534",
 		image: "https://a0.muscache.com/im/pictures/36575928/b6ec565d_original.jpg?aki_policy=xx_large",
 		description: "Lovely Home with Hot Tub",
-		likes: 3
+		likes: 3,
+		link: ""
 	}
 ];
 
@@ -32,7 +35,7 @@ window.attendees = [
 	},
 	{
 		name: "Kiki",
-		status: "pay",
+		status: "unpaid",
 		notes: "Leaving Saturday"
 	}
 ];
@@ -55,6 +58,7 @@ window.packing = [
 	} 
 ];
 
+
 var Title = React.createClass({
 	render: function () {
 		return (
@@ -67,15 +71,14 @@ var Title = React.createClass({
 
 var VacationChoices = React.createClass({
 	render: function () {
-
 		var locationElements = [];
 		for (var i = 0; i < choices.length; i++) {
 			locationElements.push(
 				<div className="vacation-choice" key={i}>
 					<h3>{choices[i].location} - {choices[i].price} Per Night</h3>
-					<img src={choices[i].image}/>
+					<a href={choices[i].link}><div className="choice-img"><img src={choices[i].image}/></div></a>
 					<h3>{choices[i].description}</h3>
-					<h3>❤️ {choices[i].likes}</h3>
+					<VoteSection index={i}/>
 				</div>
 			);
 		}
@@ -88,18 +91,53 @@ var VacationChoices = React.createClass({
 	}
 })
 
+var VoteSection = React.createClass({
+	getInitialState: function () {
+		return {
+			hasVoted: false
+		}
+	},
+	render: function () {
+		var i = this.props.index;
+		if (this.state.hasVoted === true) {
+			console.log(this.state)
+			var heartFill = <span className="heart"><img onClick={this.removeVote} src="images/heart-filled_thick.png"/><h3>{choices[i].likes}</h3></span>
+		} else {
+			heartFill = <span className="heart"><img onClick={this.addVote} src="images/heart-outline_thick.png"/><h3>{choices[i].likes}</h3></span>
+		}
+		return (
+			heartFill
+		)
+	},
+	addVote: function () {
+		var i = this.props.index;
+		console.log('add vote called')
+		if (this.state.hasVoted === false) {
+			this.setState({hasVoted: true})
+			choices[i].likes += 1;
+			renderApp()	
+		}
+	},
+	removeVote: function () {
+		var i = this.props.index;
+		console.log('remove vote called')
+		if (this.state.hasVoted === true) {
+			this.setState({hasVoted: false})
+			choices[i].likes -= 1;
+			renderApp()	
+		}
+	}
+})
+
 var ChooseDestinations = React.createClass({
 	render: function () {
-
 		return (
 			<div id="choice-input-section">
-				<h2>Add up to three AirBnB URLs:</h2>
 				<div id="choice-inputs">
-					<h3>Choice 1:</h3><input type="text" size="50" ref="linkInput1"></input>
-					<h3>Choice 2:</h3><input type="text" size="50" ref="linkInput2"></input>
-					<h3>Choice 3:</h3><input type="text" size="50" ref="linkInput3"></input><br/>
+					<h3>Choice 1:</h3><input type="text" size="50" ref="linkInput1" onKeyDown={this.enterSubmit} placeholder="Paste AirBnb Url"></input>
+					<h3>Choice 2:</h3><input type="text" size="50" ref="linkInput2" onKeyDown={this.enterSubmit} placeholder="Paste AirBnb Url"></input>
+					<h3>Choice 3:</h3><input type="text" size="50" ref="linkInput3" onKeyDown={this.enterSubmit} placeholder="Paste AirBnb Url"></input><br/>
 				</div>				
-				<button onClick={this.addLinks}>Add</button>
 			</div>
 		);
 	},
@@ -113,21 +151,34 @@ var ChooseDestinations = React.createClass({
 		var linkUrl3 = linkInput3.value;
 		$.getJSON( "airbnbInfo?url=" + linkUrl1, function( data ) {
   			choices[0] = data;
+  			choices[0].likes = 0;
+  			choices[0].link = linkUrl1;
   			renderApp();
 		});
 		$.getJSON( "airbnbInfo?url=" + linkUrl2, function( data ) {
   			choices[1] = data;
+  			choices[1].likes = 0;
+  			choices[1].link = linkUrl2;
   			renderApp();
 		});
 		$.getJSON( "airbnbInfo?url=" + linkUrl3, function( data ) {
   			choices[2] = data;
+  			choices[2].likes = 0;
+  			choices[2].link = linkUrl3;
   			renderApp();	
 		});
 		linkInput1.value = "";
 		linkInput2.value = "";
 		linkInput3.value = "";
+	}, 
+
+	enterSubmit: function (event) {
+		if (event.keyCode === 13) {
+			this.addLinks();
+		}
 	}
 });
+
 
 var AttendeesSection = React.createClass({
 	render: function () {
@@ -150,8 +201,8 @@ var AttendeesSection = React.createClass({
 						{attendeesElements}
 						<tr>
 							<td><input type="text" size="50" ref="nameInput"></input></td>
-							<td><input type="text" size="50" ref="statusInput"></input></td>
-							<td><input type="text" size="50" ref="notesInput"></input></td>
+							<td></td>
+							<td></td>
 						</tr>
 					</tbody>
 	            </table>
@@ -163,20 +214,14 @@ var AttendeesSection = React.createClass({
 	addAttendees: function () {
 		var nameInput = this.refs.nameInput;
 		var nameText = nameInput.value;
-		var statusInput = this.refs.statusInput;
-		var statusText = statusInput.value;
-		var notesInput = this.refs.notesInput;
-		var notesText = notesInput.value;
 		attendees.push(
 			{
 				name: nameText,
-				status: statusText,
-				notes: notesText
+				status: "unpaid",
+				notes: "+"
 			}
 		)
 		nameInput.value = "";
-		statusInput.value = "";
-		notesInput.value = "";
 		renderApp();
 	}
 });
@@ -189,18 +234,22 @@ var AttendeesRow = React.createClass({
 		}
 	},
 	render: function () {
-		console.log(this.state)
 		var i = this.props.index;
 		if (this.state.isEditingName === true) {
 			var nameElement = <input type="text" size="50" ref="nameInput" defaultValue={attendees[i].name}></input>
 		} else {
 			nameElement = attendees[i].name;
 		}
+		if (this.state.isEditingNotes === true) {
+			var notesElement = <input type="text" size="50" ref="notesInput" defaultValue={attendees[i].notes}></input>
+		} else {
+			notesElement = attendees[i].notes;
+		}
 		return (
 			<tr>
-				<td onClick={this.toggleEditOn} onBlur={this.toggleEditOff} onKeyDown={this.keyDown}>{nameElement}</td>
+				<td onClick={this.toggleEditOnName} onBlur={this.toggleEditOffName} onKeyDown={this.enterSubmitName}>{nameElement}</td>
 				<td onClick={this.togglePaid}>{attendees[i].status}</td> 
-				<td onClick={this.toggleEdit}>{attendees[i].notes}</td>
+				<td onClick={this.toggleEditOnNotes} onBlur={this.toggleEditOffNotes} onKeyDown={this.enterSubmitNotes}>{notesElement}</td>
 			</tr>
 		)
 	},
@@ -213,12 +262,17 @@ var AttendeesRow = React.createClass({
 		}
 		renderApp();
 	},
-	toggleEditOn: function () {
+	toggleEditOnName: function () {
 		if (!this.state.isEditingName) {
 			this.setState({isEditingName: true})
 		}
 	},
-	toggleEditOff: function () {
+	toggleEditOnNotes: function () {
+		if (!this.state.isEditingNotes) {
+			this.setState({isEditingNotes: true})
+		}
+	},
+	toggleEditOffName: function () {
 		var i = this.props.index;
 		if (this.state.isEditingName) {
 			this.setState({isEditingName: false})
@@ -227,9 +281,23 @@ var AttendeesRow = React.createClass({
 			attendees[i].name = nameText;
 		}
 	},
-	keyDown: function (event) {
+	toggleEditOffNotes: function () {
+		var i = this.props.index;
+		if (this.state.isEditingNotes) {
+			this.setState({isEditingNotes: false})
+			var notesInput = this.refs.notesInput;
+			var notesText = notesInput.value;
+			attendees[i].notes = notesText;
+		}
+	},
+	enterSubmitName: function (event) {
 		if (event.keyCode === 13) {
-			this.toggleEditOff();
+			this.toggleEditOffName();
+		}
+	},
+	enterSubmitNotes: function (event) {
+		if (event.keyCode === 13) {
+			this.toggleEditOffNotes();
 		}
 	}
 })
@@ -255,8 +323,8 @@ var PackingSection = React.createClass({
 						{packingElements}
 						<tr>
 							<td><input type="text" size="50" ref="thingsInput"></input></td>
-							<td><input type="text" size="50" ref="whoInput"></input></td>
-							<td><input type="text" size="50" ref="notesInput"></input></td>
+							<td></td>
+							<td></td>
 						</tr>
 					</tbody>
 	            </table>
@@ -268,34 +336,107 @@ var PackingSection = React.createClass({
 	addToPacking: function () {
 		var thingsInput = this.refs.thingsInput;
 		var thingsText = thingsInput.value;
-		var whoInput = this.refs.whoInput;
-		var whoText = whoInput.value;
-		var notesInput = this.refs.notesInput;
-		var notesText = notesInput.value;
 		packing.push(
 			{
 				thingsToBring: thingsText,
-				whosBringingIt: whoText,
-				notes: notesText
+				whosBringingIt: "+",
+				notes: "+"
 			}
 		)
 		thingsInput.value = "";
-		whoInput.value = "";
-		notesInput.value = "";
 		renderApp();
 	}
 });
 
 var PackingRow = React.createClass({
+	getInitialState: function () {
+		return {
+			isEditingThingsToBring: false,
+			isEditingWhosBringingIt: false,
+			isEditingNotes: false
+		}
+	},
 	render: function () {
 		var i = this.props.index;
+		if (this.state.isEditingThingsToBring === true) {
+			var thingsElement = <input type="text" size="50" ref="thingsInput" defaultValue={packing[i].thingsToBring}></input>
+		} else {
+			thingsElement = packing[i].thingsToBring;
+		}
+		if (this.state.isEditingWhosBringingIt === true) {
+			var whoElement = <input type="text" size="50" ref="whoInput" defaultValue={packing[i].whosBringingIt}></input>
+		} else {
+			whoElement = packing[i].whosBringingIt;
+		}
+		if (this.state.isEditingNotes === true) {
+			var notesElement = <input type="text" size="50" ref="notesInput" defaultValue={packing[i].notes}></input>
+		} else {
+			notesElement = packing[i].notes;
+		}
 		return (
 			<tr>
-				<td>{packing[i].thingsToBring}</td>
-				<td>{packing[i].whosBringingIt}</td> 
-				<td>{packing[i].notes}</td>
+				<td onClick={this.toggleEditOnThings} onBlur={this.toggleEditOffThings} onKeyUp={this.enterSubmitThings}>{thingsElement}</td>
+				<td onClick={this.toggleEditOnWho} onBlur={this.toggleEditOffWho} onKeyUp={this.enterSubmitWho}>{whoElement}</td> 
+				<td onClick={this.toggleEditOnNotes} onBlur={this.toggleEditOffNotes} onKeyUp={this.enterSubmitNotes}>{notesElement}</td>
 			</tr>
 		)
+	},
+	toggleEditOnThings: function () {
+		if (!this.state.isEditingThingsToBring) {
+			this.setState({isEditingThingsToBring: true})
+		}
+	},
+	toggleEditOnWho: function () {
+		if (!this.state.isEditingWhosBringingIt) {
+			this.setState({isEditingWhosBringingIt: true})
+		}
+	},
+	toggleEditOnNotes: function () {
+		if (!this.state.isEditingNotes) {
+			this.setState({isEditingNotes: true})
+		}
+	},
+	toggleEditOffThings: function () {
+		var i = this.props.index;
+		if (this.state.isEditingThingsToBring) {
+			this.setState({isEditingThingsToBring: false})
+			var thingsInput = this.refs.thingsInput;
+			var thingsText = thingsInput.value;
+			packing[i].thingsToBring = thingsText;
+		}
+	},
+	toggleEditOffWho: function () {
+		var i = this.props.index;
+		if (this.state.isEditingWhosBringingIt) {
+			this.setState({isEditingWhosBringingIt: false})
+			var whoInput = this.refs.whoInput;
+			var whoText = whoInput.value;
+			packing[i].whosBringingIt = whoText;
+		}
+	},
+	toggleEditOffNotes: function () {
+		var i = this.props.index;
+		if (this.state.isEditingNotes) {
+			this.setState({isEditingNotes: false})
+			var notesInput = this.refs.notesInput;
+			var notesText = notesInput.value;
+			packing[i].notes = notesText;
+		}
+	},
+	enterSubmitThings: function (event) {
+		if (event.keyCode === 13) {
+			this.toggleEditOffThings();
+		}
+	},
+	enterSubmitWho: function (event) {
+		if (event.keyCode === 13) {
+			this.toggleEditOffWho();
+		}
+	},
+	enterSubmitNotes: function (event) {
+		if (event.keyCode === 13) {
+			this.toggleEditOffNotes();
+		}
 	}
 });
 
