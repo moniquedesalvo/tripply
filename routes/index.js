@@ -30,7 +30,7 @@ function getAirbnbListing(listingId, callback) {
             var choices = {
         		location: parsedBody.listing.smart_location,
         		price: parsedBody.listing.price_formatted,
-        		image: parsedBody.listing.picture_url,
+        		image: parsedBody.listing.xl_picture_url,
         		description: parsedBody.listing.name
         };
             callback(choices);

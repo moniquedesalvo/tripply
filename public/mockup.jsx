@@ -7,7 +7,8 @@ window.choices = [
 		image: "https://a2.muscache.com/im/pictures/3c8d3246-f27c-4044-9a2e-e0a6c78d5296.jpg?aki_policy=large",
 		description: "Gorgeous Ocen Front Property", 
 		likes: 2, 
-		link: ""
+		link: "",
+		booked: false
 	},
 	{
 		location: "Big Sur, CA",
@@ -15,7 +16,8 @@ window.choices = [
 		image: "https://a2.muscache.com/im/pictures/43006829/fbb07cff_original.jpg?aki_policy=large",
 		description: "4 Bedroom Cottage in the Woods",
 		likes: 5,
-		link: ""
+		link: "",
+		booked: false
 	},
 	{
 		location: "Monterey, CA",
@@ -23,7 +25,8 @@ window.choices = [
 		image: "https://a0.muscache.com/im/pictures/36575928/b6ec565d_original.jpg?aki_policy=xx_large",
 		description: "Lovely Home with Hot Tub",
 		likes: 3,
-		link: ""
+		link: "",
+		booked: false
 	}
 ];
 
@@ -63,7 +66,6 @@ var TitleSection = React.createClass({
 	render: function () {
 		return (
 			<div className="title-section">
-				<button>Edit</button>	
 				<h1>{title}</h1>
 			</div>
 
@@ -72,39 +74,84 @@ var TitleSection = React.createClass({
 })
 
 var VacationChoices = React.createClass({
+	getInitialState: function () {
+		return {
+			isEditing: false
+		}
+	},
 	render: function () {
+		var isEditing = this.state.isEditing;
 		var locationElements = [];
 		for (var i = 0; i < choices.length; i++) {
 			locationElements.push(
-				<VacationChoice index={i} key={i}/>
+				<VacationChoice index={i} key={i} isEditing={isEditing}/>
 			);
 		}
+
+		if (isEditing === true) {
+			var topEditButton = null;
+		} else {
+			var topEditButton = <button onClick={this.editModeOn}>Edit</button>;
+		}
+		if (isEditing === false) {
+			var bottomEditButton = null;
+		} else {
+			bottomEditButton = <button onClick={this.editModeOff}>Done Editing</button>
+		}
+
  		return (
-			<div id="locations">
-				{locationElements}	
+ 			<div>
+	 			<div>
+	 				<h2>Vote on a Place to Stay: {topEditButton}</h2>
+	 			</div>
+				<div id="locations">
+					{locationElements}	
+				</div>
+				<div>
+					{bottomEditButton}
+				</div>
 			</div>
 		);
+	},
+	editModeOn: function () {
+		this.setState({isEditing: true})
+	},
+	editModeOff: function () {
+		this.setState({isEditing: false}) 
 	}
 })
 
 var VacationChoice = React.createClass({
 	render: function () {
 		var i = this.props.index;
+		var isEditing = this.props.isEditing;
+		if (isEditing === true) {
+			var view = 
+				<div className="vacation-choice" key={i}>
+					<h3>{choices[i].location} - {choices[i].price} Per Night</h3>
+					<a href={choices[i].link}><div className="choice-img"><img src={choices[i].image}/></div></a>
+					<h3>{choices[i].description}</h3>
+					<VoteSection index={i}/><button onClick={this.toggleBooked}>Booked It!</button><br/>
+					<input type="text" size="50" ref="linkInput" onKeyDown={this.enterSubmit} placeholder="Paste AirBnb Url"></input>
+				</div>
+		} else {
+			view = 
+				<div className="vacation-choice" key={i}>
+					<h3>{choices[i].location} - {choices[i].price} Per Night</h3>
+					<a href={choices[i].link}><div className="choice-img"><img src={choices[i].image}/></div></a>
+					<h3>{choices[i].description}</h3>
+					<VoteSection index={i}/>
+				</div>
+		}
 		return (
-			<div className="vacation-choice" key={i}>
-				<h3>{choices[i].location} - {choices[i].price} Per Night</h3>
-				<a href={choices[i].link}><div className="choice-img"><img src={choices[i].image}/></div></a>
-				<h3>{choices[i].description}</h3>
-				<VoteSection index={i}/>
-				<input type="text" size="50" ref="linkInput" onKeyDown={this.enterSubmit} placeholder="Paste AirBnb Url"></input>
-			</div>
+			view
 		)
 	},
 	addLink: function () {
 		var i = this.props.index;
 		var linkInput = this.refs.linkInput;
 		var linkUrl = linkInput.value;
-		$.getJSON( "airbnbInfo?url=" + linkUrl, function( data ) {
+		$.getJSON("airbnbInfo?url=" + linkUrl, function (data) {
 			choices[i] = data;
   			choices[i].likes = 0;
   			choices[i].link = linkUrl;
@@ -116,6 +163,28 @@ var VacationChoice = React.createClass({
 		if (event.keyCode === 13) {
 			this.addLink();
 		}
+	},
+	toggleBooked: function () {
+		var i = this.props.index;
+		choices[i].booked = true;
+		renderApp();
+	}
+})
+
+var Booked = React.createClass({
+	render: function () {
+		var i = this.props.index;
+		return (
+			<div id="booked">
+	            <img src={choices[i].image}/>
+	            <button onClick={this.unBook}>Back</button>
+	        </div>
+        )
+	},
+	unBook: function () {
+		var i = this.props.index;
+		choices[i].booked = false;
+		renderApp();
 	}
 })
 
@@ -423,12 +492,22 @@ var App = React.createClass({
 			<div id="main">
 				<div id="location-section">
 					<TitleSection />
-					<VacationChoices />
+					{this.findBooked()}
 					<AttendeesSection />
 					<PackingSection />
 				</div>
 			</div>
 		)
+	},
+	findBooked: function () {
+		for (var i = 0; i < choices.length; i++) {
+			console.log(choices[i])
+			if (choices[i].booked === true) {
+				console.log("booked, got here")
+				return <Booked index={i}/>
+			}
+		}
+		return <VacationChoices />
 	}
 });
 

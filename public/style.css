@@ -38,10 +38,6 @@ input:focus {
 	margin: auto;
 }
 
-/*.title-section {
-	display: flex;
-}
-*/
 .title-section button {
 	height: 20px;
 }
@@ -119,6 +115,16 @@ input:focus {
 
 #attendees-section table, #packing-section table {
 	width: 80%;
+}
+
+#booked {
+	background-color: #e3dfe1;
+	height: 800px;
+}
+
+#booked img {
+	width: 100%;
+	height: inherit;
 }
 
 footer {
