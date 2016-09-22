@@ -38,6 +38,14 @@ input:focus {
 	margin: auto;
 }
 
+/*.title-section {
+	display: flex;
+}
+*/
+.title-section button {
+	height: 20px;
+}
+
 #locations {
 	display: flex;
 }
@@ -69,6 +77,15 @@ input:focus {
 	margin: auto;
 }
 
+#choice-inputs {
+	display: flex;
+}
+
+#choice-inputs input {
+	width: 345px;
+	margin: 15px;
+}
+
 #location-section .vacation-choice .heart img {
 	height: 25px;
 	width: 25px;
@@ -83,6 +100,7 @@ input:focus {
 #location-section .vacation-choice .heart {
 	display: flex;
 }
+
 
 .vacation-choice h3 {
 	padding-left: 15px;

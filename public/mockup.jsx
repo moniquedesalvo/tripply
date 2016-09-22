@@ -59,12 +59,14 @@ window.packing = [
 ];
 
 
-var Title = React.createClass({
+var TitleSection = React.createClass({
 	render: function () {
 		return (
-			<div className="title">
+			<div className="title-section">
+				<button>Edit</button>	
 				<h1>{title}</h1>
 			</div>
+
 		);
 	}
 })
@@ -74,20 +76,46 @@ var VacationChoices = React.createClass({
 		var locationElements = [];
 		for (var i = 0; i < choices.length; i++) {
 			locationElements.push(
-				<div className="vacation-choice" key={i}>
-					<h3>{choices[i].location} - {choices[i].price} Per Night</h3>
-					<a href={choices[i].link}><div className="choice-img"><img src={choices[i].image}/></div></a>
-					<h3>{choices[i].description}</h3>
-					<VoteSection index={i}/>
-				</div>
+				<VacationChoice index={i} key={i}/>
 			);
 		}
-
  		return (
 			<div id="locations">
 				{locationElements}	
 			</div>
 		);
+	}
+})
+
+var VacationChoice = React.createClass({
+	render: function () {
+		var i = this.props.index;
+		return (
+			<div className="vacation-choice" key={i}>
+				<h3>{choices[i].location} - {choices[i].price} Per Night</h3>
+				<a href={choices[i].link}><div className="choice-img"><img src={choices[i].image}/></div></a>
+				<h3>{choices[i].description}</h3>
+				<VoteSection index={i}/>
+				<input type="text" size="50" ref="linkInput" onKeyDown={this.enterSubmit} placeholder="Paste AirBnb Url"></input>
+			</div>
+		)
+	},
+	addLink: function () {
+		var i = this.props.index;
+		var linkInput = this.refs.linkInput;
+		var linkUrl = linkInput.value;
+		$.getJSON( "airbnbInfo?url=" + linkUrl, function( data ) {
+			choices[i] = data;
+  			choices[i].likes = 0;
+  			choices[i].link = linkUrl;
+  			renderApp();
+		});
+		linkInput.value = "";
+	}, 
+	enterSubmit: function (event) {
+		if (event.keyCode === 13) {
+			this.addLink();
+		}
 	}
 })
 
@@ -128,57 +156,6 @@ var VoteSection = React.createClass({
 		}
 	}
 })
-
-var ChooseDestinations = React.createClass({
-	render: function () {
-		return (
-			<div id="choice-input-section">
-				<div id="choice-inputs">
-					<h3>Choice 1:</h3><input type="text" size="50" ref="linkInput1" onKeyDown={this.enterSubmit} placeholder="Paste AirBnb Url"></input>
-					<h3>Choice 2:</h3><input type="text" size="50" ref="linkInput2" onKeyDown={this.enterSubmit} placeholder="Paste AirBnb Url"></input>
-					<h3>Choice 3:</h3><input type="text" size="50" ref="linkInput3" onKeyDown={this.enterSubmit} placeholder="Paste AirBnb Url"></input><br/>
-				</div>				
-			</div>
-		);
-	},
-
-	addLinks: function () {
-		var linkInput1 = this.refs.linkInput1;
-		var linkUrl1 = linkInput1.value;
-		var linkInput2 = this.refs.linkInput2;
-		var linkUrl2 = linkInput2.value;
-		var linkInput3 = this.refs.linkInput3;
-		var linkUrl3 = linkInput3.value;
-		$.getJSON( "airbnbInfo?url=" + linkUrl1, function( data ) {
-  			choices[0] = data;
-  			choices[0].likes = 0;
-  			choices[0].link = linkUrl1;
-  			renderApp();
-		});
-		$.getJSON( "airbnbInfo?url=" + linkUrl2, function( data ) {
-  			choices[1] = data;
-  			choices[1].likes = 0;
-  			choices[1].link = linkUrl2;
-  			renderApp();
-		});
-		$.getJSON( "airbnbInfo?url=" + linkUrl3, function( data ) {
-  			choices[2] = data;
-  			choices[2].likes = 0;
-  			choices[2].link = linkUrl3;
-  			renderApp();	
-		});
-		linkInput1.value = "";
-		linkInput2.value = "";
-		linkInput3.value = "";
-	}, 
-
-	enterSubmit: function (event) {
-		if (event.keyCode === 13) {
-			this.addLinks();
-		}
-	}
-});
-
 
 var AttendeesSection = React.createClass({
 	render: function () {
@@ -445,9 +422,8 @@ var App = React.createClass({
 		return (
 			<div id="main">
 				<div id="location-section">
-					<Title />
+					<TitleSection />
 					<VacationChoices />
-					<ChooseDestinations />
 					<AttendeesSection />
 					<PackingSection />
 				</div>
