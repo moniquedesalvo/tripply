@@ -29,7 +29,7 @@ input {
 }
 
 input:focus {
-	border: 2px solid #128fa9;
+	border: 3px solid #128fa9;
 	outline: none;
 }
 
@@ -119,17 +119,31 @@ input:focus {
 
 #booked {
 	background-color: #e3dfe1;
-	height: 800px;
+	height: 200px;
+	width: 100%;
+	display: flex;
+	overflow: hidden;
+
 }
 
 #booked img {
-	width: 100%;
 	height: inherit;
 }
 
 #details-section textarea {
-	width: 500px;
+	width: 700px;
 	height: 200px;
+
+}
+
+textarea:focus {
+	border: 3px solid #128fa9;
+	outline: none;
+}
+
+#details-section p {
+	white-space: pre-wrap;
+	width: 700px;
 }
 
 footer {

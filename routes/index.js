@@ -31,7 +31,8 @@ function getAirbnbListing(listingId, callback) {
         		location: parsedBody.listing.smart_location,
         		price: parsedBody.listing.price_formatted,
         		image: parsedBody.listing.xl_picture_url,
-        		description: parsedBody.listing.name
+        		description: parsedBody.listing.name,
+                images: parsedBody.listing.picture_urls
         };
             callback(choices);
         }

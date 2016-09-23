@@ -8,7 +8,17 @@ window.choices = [
 		description: "Gorgeous Ocen Front Property", 
 		likes: 2, 
 		link: "",
-		booked: false
+		booked: false,
+		images: [
+			"https://a2.muscache.com/im/pictures/69358559/eecdacaa_original.jpg?aki_policy=large",
+			"https://a2.muscache.com/im/pictures/69358098/e82386b8_original.jpg?aki_policy=large",
+			"https://a2.muscache.com/im/pictures/69358624/6a91c232_original.jpg?aki_policy=large",
+			"https://a0.muscache.com/im/pictures/69358840/7047fd2e_original.jpg?aki_policy=large",
+			"https://a1.muscache.com/im/pictures/69358675/b64d97da_original.jpg?aki_policy=large",
+			"https://a1.muscache.com/im/pictures/69358901/7df3b111_original.jpg?aki_policy=large",
+			"https://a0.muscache.com/im/pictures/69358957/b3b72c44_original.jpg?aki_policy=large",
+			"https://a1.muscache.com/im/pictures/69359019/7f376f3e_original.jpg?aki_policy=large"
+    	]
 	},
 	{
 		location: "Big Sur, CA",
@@ -17,7 +27,17 @@ window.choices = [
 		description: "4 Bedroom Cottage in the Woods",
 		likes: 5,
 		link: "",
-		booked: false
+		booked: false,
+		images: [
+			"https://a2.muscache.com/im/pictures/69358559/eecdacaa_original.jpg?aki_policy=large",
+			"https://a2.muscache.com/im/pictures/69358098/e82386b8_original.jpg?aki_policy=large",
+			"https://a2.muscache.com/im/pictures/69358624/6a91c232_original.jpg?aki_policy=large",
+			"https://a0.muscache.com/im/pictures/69358840/7047fd2e_original.jpg?aki_policy=large",
+			"https://a1.muscache.com/im/pictures/69358675/b64d97da_original.jpg?aki_policy=large",
+			"https://a1.muscache.com/im/pictures/69358901/7df3b111_original.jpg?aki_policy=large",
+			"https://a0.muscache.com/im/pictures/69358957/b3b72c44_original.jpg?aki_policy=large",
+			"https://a1.muscache.com/im/pictures/69359019/7f376f3e_original.jpg?aki_policy=large"
+    	]
 	},
 	{
 		location: "Monterey, CA",
@@ -26,7 +46,17 @@ window.choices = [
 		description: "Lovely Home with Hot Tub",
 		likes: 3,
 		link: "",
-		booked: false
+		booked: false,
+		images: [
+			"https://a2.muscache.com/im/pictures/69358559/eecdacaa_original.jpg?aki_policy=large",
+			"https://a2.muscache.com/im/pictures/69358098/e82386b8_original.jpg?aki_policy=large",
+			"https://a2.muscache.com/im/pictures/69358624/6a91c232_original.jpg?aki_policy=large",
+			"https://a0.muscache.com/im/pictures/69358840/7047fd2e_original.jpg?aki_policy=large",
+			"https://a1.muscache.com/im/pictures/69358675/b64d97da_original.jpg?aki_policy=large",
+			"https://a1.muscache.com/im/pictures/69358901/7df3b111_original.jpg?aki_policy=large",
+			"https://a0.muscache.com/im/pictures/69358957/b3b72c44_original.jpg?aki_policy=large",
+			"https://a1.muscache.com/im/pictures/69359019/7f376f3e_original.jpg?aki_policy=large"
+    	]
 	}
 ];
 
@@ -179,10 +209,18 @@ var VacationChoice = React.createClass({
 var Booked = React.createClass({
 	render: function () {
 		var i = this.props.index;
+		var imageElements = [];
+		for (var j = 0; j < choices[i].images.length; j++) {
+			imageElements.push(
+				<BookedImages indexj={j} index={i} key={j}/>
+			)
+		}
 		return (
-			<div id="booked">
-	            <img src={choices[i].image}/>
-	            <button onClick={this.unBook}>Back</button>
+			<div>
+				<div id="booked">
+		        	{imageElements}    
+				</div>
+	        	<button onClick={this.unBook}>Back</button>
 	        </div>
         )
 	},
@@ -190,6 +228,16 @@ var Booked = React.createClass({
 		var i = this.props.index;
 		choices[i].booked = false;
 		renderApp();
+	}
+})
+
+var BookedImages = React.createClass({
+	render: function () {
+		var i = this.props.index
+		var j = this.props.indexj;
+		return (
+			<img src={choices[i].images[j]}/> 
+		)
 	}
 })
 
@@ -202,7 +250,6 @@ var VoteSection = React.createClass({
 	render: function () {
 		var i = this.props.index;
 		if (this.state.hasVoted === true) {
-			console.log(this.state)
 			var heartFill = <span className="heart"><img onClick={this.removeVote} src="images/heart-filled_thick.png"/><h3>{choices[i].likes}</h3></span>
 		} else {
 			heartFill = <span className="heart"><img onClick={this.addVote} src="images/heart-outline_thick.png"/><h3>{choices[i].likes}</h3></span>
@@ -249,7 +296,7 @@ var AttendeesSection = React.createClass({
 			            </tr>
 						{attendeesElements}
 						<tr>
-							<td><input type="text" size="50" ref="nameInput"></input></td>
+							<td><input type="text" size="50" ref="nameInput" placeholder="Add a name" onKeyDown={this.enterSubmitName}></input></td>
 							<td></td>
 							<td></td>
 						</tr>
@@ -272,6 +319,11 @@ var AttendeesSection = React.createClass({
 		)
 		nameInput.value = "";
 		renderApp();
+	},
+	enterSubmitName: function (event) {
+		if (event.keyCode === 13) {
+			this.addAttendees();
+		}
 	}
 });
 
@@ -371,7 +423,7 @@ var PackingSection = React.createClass({
 			            </tr>
 						{packingElements}
 						<tr>
-							<td><input type="text" size="50" ref="thingsInput"></input></td>
+							<td><input type="text" size="50" ref="thingsInput" placeholder="Add a thing" onKeyUp={this.enterSubmitThings}></input></td>
 							<td></td>
 							<td></td>
 						</tr>
@@ -381,7 +433,6 @@ var PackingSection = React.createClass({
           	</div>
 		)
 	},
-
 	addToPacking: function () {
 		var thingsInput = this.refs.thingsInput;
 		var thingsText = thingsInput.value;
@@ -394,6 +445,11 @@ var PackingSection = React.createClass({
 		)
 		thingsInput.value = "";
 		renderApp();
+	},
+	enterSubmitThings: function (event) {
+		if (event.keyCode === 13) {
+			this.addToPacking();
+		}
 	}
 });
 
@@ -424,9 +480,9 @@ var PackingRow = React.createClass({
 		}
 		return (
 			<tr>
-				<td onClick={this.toggleEditOnThings} onBlur={this.toggleEditOffThings} onKeyUp={this.enterSubmitThings}>{thingsElement}</td>
-				<td onClick={this.toggleEditOnWho} onBlur={this.toggleEditOffWho} onKeyUp={this.enterSubmitWho}>{whoElement}</td> 
-				<td onClick={this.toggleEditOnNotes} onBlur={this.toggleEditOffNotes} onKeyUp={this.enterSubmitNotes}>{notesElement}</td>
+				<td onClick={this.toggleEditOnThings} onBlur={this.toggleEditOffThings} onKeyDown={this.enterSubmitThings}>{thingsElement}</td>
+				<td onClick={this.toggleEditOnWho} onBlur={this.toggleEditOffWho} onKeyDown={this.enterSubmitWho}>{whoElement}</td> 
+				<td onClick={this.toggleEditOnNotes} onBlur={this.toggleEditOffNotes} onKeyDown={this.enterSubmitNotes}>{notesElement}</td>
 			</tr>
 		)
 	},
@@ -498,18 +554,18 @@ var Details = React.createClass({
 	render: function () {
 		if (this.state.isEditing === true) {
 			var view =
-			<div id="details-section">
-				<h2>Details:</h2>
-				<textarea defaultValue={details[0].text} type="text" size="50" ref="detailsInput"></textarea>
-				<button onClick={this.handleClick}>Submit</button>
-			</div>
+				<div id="details-section">
+					<h2>Details:</h2>
+					<textarea defaultValue={details[0].text} type="text" size="50" ref="detailsInput"></textarea>
+					<button onClick={this.handleClick}>Submit</button>
+				</div>
 		} else {	
 			view = 
-			<div id="details-section">
-				<h2>Details:</h2>
-				<p>{details[0].text}</p>
-				<button onClick={this.toggleEditOn}>Edit</button>
-			</div>
+				<div id="details-section">
+					<h2>Details:</h2>
+					<p>{details[0].text}</p>
+					<button onClick={this.toggleEditOn}>Edit</button>
+				</div>
 		}
 		return (
 			view
