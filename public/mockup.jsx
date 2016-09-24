@@ -99,12 +99,41 @@ window.details = [
 
 
 var TitleSection = React.createClass({
+	getInitialState: function () {
+		return {
+			isEditing: false
+		}
+	},
 	render: function () {
+		if (this.state.isEditing === true) {
+			var titleDiv = 
+				<div className="title-section">
+					<h1><input type="text" ref="titleInput" placeholder="Add title and dates" onKeyDown={this.enterSubmitTitle}></input></h1>
+				</div>
+		} else {
+			titleDiv = 
+				<div className="title-section">
+					<h1 onClick={this.clickToEdit}>{title}</h1>
+				</div>
+		}	
 		return (
-			<div className="title-section">
-				<h1>{title}</h1>
-			</div>
+			titleDiv
 		);
+	},
+	clickToEdit: function () {
+		this.setState({isEditing: true});
+	},
+	addTitle: function () {
+		var titleInput = this.refs.titleInput;
+		var titleText = titleInput.value;
+		title = titleText;
+		renderApp();
+	},
+	enterSubmitTitle: function (event) {
+		if (event.keyCode === 13) {
+			this.setState({isEditing:false})
+			this.addTitle();
+		}
 	}
 })
 
@@ -167,7 +196,7 @@ var VacationChoice = React.createClass({
 					<a href={choices[i].link}><div className="choice-img"><img src={choices[i].image}/></div></a>
 					<h3>{choices[i].description}</h3>
 					<VoteSection index={i}/><button onClick={this.toggleBooked}>Booked It!</button><br/>
-					<input type="text" size="50" ref="linkInput" onKeyDown={this.enterSubmit} placeholder="Paste AirBnb Url"></input>
+					<input type="text" ref="linkInput" onKeyDown={this.enterSubmit} placeholder="Paste AirBnb Url"></input>
 				</div>
 		} else {
 			view = 
@@ -296,7 +325,7 @@ var AttendeesSection = React.createClass({
 			            </tr>
 						{attendeesElements}
 						<tr>
-							<td><input type="text" size="50" ref="nameInput" placeholder="Add a name" onKeyDown={this.enterSubmitName}></input></td>
+							<td><input type="text" ref="nameInput" placeholder="Add a name" onKeyDown={this.enterSubmitName}></input></td>
 							<td></td>
 							<td></td>
 						</tr>
@@ -337,12 +366,12 @@ var AttendeesRow = React.createClass({
 	render: function () {
 		var i = this.props.index;
 		if (this.state.isEditingName === true) {
-			var nameElement = <input type="text" size="50" ref="nameInput" defaultValue={attendees[i].name}></input>
+			var nameElement = <input type="text" ref="nameInput" defaultValue={attendees[i].name}></input>
 		} else {
 			nameElement = attendees[i].name;
 		}
 		if (this.state.isEditingNotes === true) {
-			var notesElement = <input type="text" size="50" ref="notesInput" defaultValue={attendees[i].notes}></input>
+			var notesElement = <input type="text" ref="notesInput" defaultValue={attendees[i].notes}></input>
 		} else {
 			notesElement = attendees[i].notes;
 		}
@@ -423,7 +452,7 @@ var PackingSection = React.createClass({
 			            </tr>
 						{packingElements}
 						<tr>
-							<td><input type="text" size="50" ref="thingsInput" placeholder="Add a thing" onKeyUp={this.enterSubmitThings}></input></td>
+							<td><input type="text" ref="thingsInput" placeholder="Add a thing" onKeyUp={this.enterSubmitThings}></input></td>
 							<td></td>
 							<td></td>
 						</tr>
@@ -464,17 +493,17 @@ var PackingRow = React.createClass({
 	render: function () {
 		var i = this.props.index;
 		if (this.state.isEditingThingsToBring === true) {
-			var thingsElement = <input type="text" size="50" ref="thingsInput" defaultValue={packing[i].thingsToBring}></input>
+			var thingsElement = <input type="text" ref="thingsInput" defaultValue={packing[i].thingsToBring}></input>
 		} else {
 			thingsElement = packing[i].thingsToBring;
 		}
 		if (this.state.isEditingWhosBringingIt === true) {
-			var whoElement = <input type="text" size="50" ref="whoInput" defaultValue={packing[i].whosBringingIt}></input>
+			var whoElement = <input type="text" ref="whoInput" defaultValue={packing[i].whosBringingIt}></input>
 		} else {
 			whoElement = packing[i].whosBringingIt;
 		}
 		if (this.state.isEditingNotes === true) {
-			var notesElement = <input type="text" size="50" ref="notesInput" defaultValue={packing[i].notes}></input>
+			var notesElement = <input type="text" ref="notesInput" defaultValue={packing[i].notes}></input>
 		} else {
 			notesElement = packing[i].notes;
 		}
@@ -556,7 +585,7 @@ var Details = React.createClass({
 			var view =
 				<div id="details-section">
 					<h2>Details:</h2>
-					<textarea defaultValue={details[0].text} type="text" size="50" ref="detailsInput"></textarea>
+					<textarea defaultValue={details[0].text} type="text" ref="detailsInput"></textarea>
 					<button onClick={this.handleClick}>Submit</button>
 				</div>
 		} else {	
