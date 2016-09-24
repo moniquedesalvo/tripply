@@ -4,7 +4,7 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: process.env.DATABASE_URL || "postgres://localhost:3000/tripply",
+    connection: process.env.DATABASE_URL || "postgres://localhost:5432/tripply",
     debug: true
   },
 
@@ -31,5 +31,4 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   }
-
 };
