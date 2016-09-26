@@ -108,7 +108,7 @@ var TitleSection = React.createClass({
 		if (this.state.isEditing === true || title === "") {
 			var titleDiv = 
 				<div className="title-section">
-					<h1><input type="text" ref="titleInput" placeholder="Add title and dates" onKeyDown={this.enterSubmitTitle}></input></h1>
+					<h1><input type="text" ref="titleInput" placeholder="Add title and dates" defaultValue={title} onKeyDown={this.enterSubmitTitle}></input></h1>
 				</div>
 		} else {
 			titleDiv = 
@@ -673,9 +673,6 @@ var App = React.createClass({
 window.renderApp = function() {
   ReactDOM.render(<App />, document.getElementById("container"));
 }
-
-//function to find window.location
-console.log(window.location.pathname + '/trip')
 
 $.getJSON(window.location.pathname + '/trip', function (data) {
 	window.title = data.trip.title
