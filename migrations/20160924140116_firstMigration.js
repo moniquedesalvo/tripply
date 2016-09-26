@@ -3,8 +3,8 @@ exports.up = function(knex, Promise) {
         knex.schema.createTable('trip', function(table) {
             table.increments();
             table.string('title');
-            table.string('tripLinkId');
-            table.string('details');
+            table.string('tripLinkId').notNullable().unique();
+            table.text('details');
         })
     ])
 
@@ -19,13 +19,7 @@ exports.up = function(knex, Promise) {
             table.integer('likes');
             table.string('link');
             table.boolean('booked');
-        });
-    })
-    .then(function() {
-        return knex.schema.createTable('images', function(table) {
-            table.increments();
-            table.integer('choices_id').references('choices.id').onDelete('CASCADE');
-            table.string('image');
+            table.text('images');
         });
     })
     .then(function() {
@@ -42,20 +36,26 @@ exports.up = function(knex, Promise) {
             table.increments();
             table.integer('trip_id').references('trip.id').onDelete('CASCADE');
             table.string('thingsToBring');
-            table.boolean('whosBringingIt');;
+            table.string('whosBringingIt');;
             table.string('notes');
         });
     })
 }
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTable('trip')
+    return Promise.all([
+        knex.schema.dropTable('packing'),
+        knex.schema.dropTable('attendees'),
+        knex.schema.dropTable('images')
+     ])
     .then(function() {
         return Promise.all([
-            knex.schema.dropTable('choices'),
-            knex.schema.dropTable('images'),
-            knex.schema.dropTable('attendees'),
-            knex.schema.dropTable('packing')
+            knex.schema.dropTable('choices')
+        ])
+    })
+    .then(function() {
+        return Promise.all([
+            knex.schema.dropTable('trip')
         ])
     })
 };

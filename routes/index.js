@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
-
+var pg = require('pg');
+var knex = require('../db/knex');
+var path = require('path');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -32,11 +34,86 @@ function getAirbnbListing(listingId, callback) {
         		price: parsedBody.listing.price_formatted,
         		image: parsedBody.listing.xl_picture_url,
         		description: parsedBody.listing.name,
-                images: parsedBody.listing.picture_urls
+                images: parsedBody.listing.picture_urls.join('\n')
         };
             callback(choices);
         }
     });
 }
+
+router.get('/:id/trip' , function (req, res, next) {
+    knex('trip').select().where('tripLinkId', req.params.id).then(function(trips) {
+        var trip = trips[0];
+        knex('choices').select().where('trip_id', trip.id).then(function(choices) {
+            knex('attendees').select().where('trip_id', trip.id).then(function(attendees) {
+                knex('packing').select().where('trip_id', trip.id).then(function(packing) {
+                    res.json({
+                        trip: trip,
+                        choices: choices,
+                        attendees: attendees,
+                        packing: packing
+                    });
+                })
+            })
+        })
+    })
+})
+
+var generateLinkId = function () {
+    var tripLink = '';
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 6; i++) {
+        tripLink += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return tripLink;
+}
+
+router.get('/newTrip', function (req, res, next) {
+    var newTripLink = generateLinkId();
+    knex('trip').insert({tripLinkId: newTripLink}).returning(['id']).then(function(trip) {
+        knex('choices').insert({trip_id: trip[0].id}).then(function(choice) {
+            knex('choices').insert({trip_id: trip[0].id}).then(function(choice) {
+                knex('choices').insert({trip_id: trip[0].id}).then(function(choice) {
+                    res.redirect(newTripLink);
+                })
+            })
+        })
+    })
+})  
+
+router.get('/:tripLinkId', function (req, res, next) {
+    res.sendFile('mockup.html', {root: 'public'});
+})
+
+router.post('/:tripLinkId/title', function (req, res, next) {
+    knex('trip').update({title: req.body.title}).where({tripLinkId: req.params.tripLinkId})
+        .then(function(data) {
+            res.send('👍');
+        })
+})
+
+router.post('/:tripLinkId/details', function (req, res, next) {
+    knex('trip').update({details: req.body.details}).where({tripLinkId: req.params.tripLinkId})
+        .then(function(data) {
+            res.send('👍');
+        })
+})
+
+router.post('/choices/:choiceId', function (req, res, next) {
+    knex('choices').update({
+        location: req.body.location,
+        price: req.body.price,
+        image: req.body.image,
+        description: req.body.description,
+        likes: req.body.likes,
+        link: req.body.link,
+        booked: req.body.booked,
+        images: req.body.images
+    }).where({id: req.params.choiceId})
+        .then(function(data) {
+            res.send('👍');
+        })
+})
+
 
 module.exports = router;

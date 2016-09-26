@@ -1,101 +1,101 @@
-window.title = "Fall Vacation: October 21-24"
+// window.title = "Fall Vacation: October 21-24"
 
-window.choices = [
-	{ 
-		location: "Big Sur, CA",
-		price: "$240",
-		image: "https://a2.muscache.com/im/pictures/3c8d3246-f27c-4044-9a2e-e0a6c78d5296.jpg?aki_policy=large",
-		description: "Gorgeous Ocen Front Property", 
-		likes: 2, 
-		link: "",
-		booked: false,
-		images: [
-			"https://a2.muscache.com/im/pictures/69358559/eecdacaa_original.jpg?aki_policy=large",
-			"https://a2.muscache.com/im/pictures/69358098/e82386b8_original.jpg?aki_policy=large",
-			"https://a2.muscache.com/im/pictures/69358624/6a91c232_original.jpg?aki_policy=large",
-			"https://a0.muscache.com/im/pictures/69358840/7047fd2e_original.jpg?aki_policy=large",
-			"https://a1.muscache.com/im/pictures/69358675/b64d97da_original.jpg?aki_policy=large",
-			"https://a1.muscache.com/im/pictures/69358901/7df3b111_original.jpg?aki_policy=large",
-			"https://a0.muscache.com/im/pictures/69358957/b3b72c44_original.jpg?aki_policy=large",
-			"https://a1.muscache.com/im/pictures/69359019/7f376f3e_original.jpg?aki_policy=large"
-    	]
-	},
-	{
-		location: "Big Sur, CA",
-		price: "$355",
-		image: "https://a2.muscache.com/im/pictures/43006829/fbb07cff_original.jpg?aki_policy=large",
-		description: "4 Bedroom Cottage in the Woods",
-		likes: 5,
-		link: "",
-		booked: false,
-		images: [
-			"https://a2.muscache.com/im/pictures/69358559/eecdacaa_original.jpg?aki_policy=large",
-			"https://a2.muscache.com/im/pictures/69358098/e82386b8_original.jpg?aki_policy=large",
-			"https://a2.muscache.com/im/pictures/69358624/6a91c232_original.jpg?aki_policy=large",
-			"https://a0.muscache.com/im/pictures/69358840/7047fd2e_original.jpg?aki_policy=large",
-			"https://a1.muscache.com/im/pictures/69358675/b64d97da_original.jpg?aki_policy=large",
-			"https://a1.muscache.com/im/pictures/69358901/7df3b111_original.jpg?aki_policy=large",
-			"https://a0.muscache.com/im/pictures/69358957/b3b72c44_original.jpg?aki_policy=large",
-			"https://a1.muscache.com/im/pictures/69359019/7f376f3e_original.jpg?aki_policy=large"
-    	]
-	},
-	{
-		location: "Monterey, CA",
-		price: "$534",
-		image: "https://a0.muscache.com/im/pictures/36575928/b6ec565d_original.jpg?aki_policy=xx_large",
-		description: "Lovely Home with Hot Tub",
-		likes: 3,
-		link: "",
-		booked: false,
-		images: [
-			"https://a2.muscache.com/im/pictures/69358559/eecdacaa_original.jpg?aki_policy=large",
-			"https://a2.muscache.com/im/pictures/69358098/e82386b8_original.jpg?aki_policy=large",
-			"https://a2.muscache.com/im/pictures/69358624/6a91c232_original.jpg?aki_policy=large",
-			"https://a0.muscache.com/im/pictures/69358840/7047fd2e_original.jpg?aki_policy=large",
-			"https://a1.muscache.com/im/pictures/69358675/b64d97da_original.jpg?aki_policy=large",
-			"https://a1.muscache.com/im/pictures/69358901/7df3b111_original.jpg?aki_policy=large",
-			"https://a0.muscache.com/im/pictures/69358957/b3b72c44_original.jpg?aki_policy=large",
-			"https://a1.muscache.com/im/pictures/69359019/7f376f3e_original.jpg?aki_policy=large"
-    	]
-	}
-];
+// window.choices = [
+// 	{ 
+// 		location: "Big Sur, CA",
+// 		price: "$240",
+// 		image: "https://a2.muscache.com/im/pictures/3c8d3246-f27c-4044-9a2e-e0a6c78d5296.jpg?aki_policy=large",
+// 		description: "Gorgeous Ocen Front Property", 
+// 		likes: 2, 
+// 		link: "",
+// 		booked: false,
+// 		images: [
+// 			"https://a2.muscache.com/im/pictures/69358559/eecdacaa_original.jpg?aki_policy=large",
+// 			"https://a2.muscache.com/im/pictures/69358098/e82386b8_original.jpg?aki_policy=large",
+// 			"https://a2.muscache.com/im/pictures/69358624/6a91c232_original.jpg?aki_policy=large",
+// 			"https://a0.muscache.com/im/pictures/69358840/7047fd2e_original.jpg?aki_policy=large",
+// 			"https://a1.muscache.com/im/pictures/69358675/b64d97da_original.jpg?aki_policy=large",
+// 			"https://a1.muscache.com/im/pictures/69358901/7df3b111_original.jpg?aki_policy=large",
+// 			"https://a0.muscache.com/im/pictures/69358957/b3b72c44_original.jpg?aki_policy=large",
+// 			"https://a1.muscache.com/im/pictures/69359019/7f376f3e_original.jpg?aki_policy=large"
+//     	]
+// 	},
+// 	{
+// 		location: "Big Sur, CA",
+// 		price: "$355",
+// 		image: "https://a2.muscache.com/im/pictures/43006829/fbb07cff_original.jpg?aki_policy=large",
+// 		description: "4 Bedroom Cottage in the Woods",
+// 		likes: 5,
+// 		link: "",
+// 		booked: false,
+// 		images: [
+// 			"https://a2.muscache.com/im/pictures/69358559/eecdacaa_original.jpg?aki_policy=large",
+// 			"https://a2.muscache.com/im/pictures/69358098/e82386b8_original.jpg?aki_policy=large",
+// 			"https://a2.muscache.com/im/pictures/69358624/6a91c232_original.jpg?aki_policy=large",
+// 			"https://a0.muscache.com/im/pictures/69358840/7047fd2e_original.jpg?aki_policy=large",
+// 			"https://a1.muscache.com/im/pictures/69358675/b64d97da_original.jpg?aki_policy=large",
+// 			"https://a1.muscache.com/im/pictures/69358901/7df3b111_original.jpg?aki_policy=large",
+// 			"https://a0.muscache.com/im/pictures/69358957/b3b72c44_original.jpg?aki_policy=large",
+// 			"https://a1.muscache.com/im/pictures/69359019/7f376f3e_original.jpg?aki_policy=large"
+//     	]
+// 	},
+// 	{
+// 		location: "Monterey, CA",
+// 		price: "$534",
+// 		image: "https://a0.muscache.com/im/pictures/36575928/b6ec565d_original.jpg?aki_policy=xx_large",
+// 		description: "Lovely Home with Hot Tub",
+// 		likes: 3,
+// 		link: "",
+// 		booked: false,
+// 		images: [
+// 			"https://a2.muscache.com/im/pictures/69358559/eecdacaa_original.jpg?aki_policy=large",
+// 			"https://a2.muscache.com/im/pictures/69358098/e82386b8_original.jpg?aki_policy=large",
+// 			"https://a2.muscache.com/im/pictures/69358624/6a91c232_original.jpg?aki_policy=large",
+// 			"https://a0.muscache.com/im/pictures/69358840/7047fd2e_original.jpg?aki_policy=large",
+// 			"https://a1.muscache.com/im/pictures/69358675/b64d97da_original.jpg?aki_policy=large",
+// 			"https://a1.muscache.com/im/pictures/69358901/7df3b111_original.jpg?aki_policy=large",
+// 			"https://a0.muscache.com/im/pictures/69358957/b3b72c44_original.jpg?aki_policy=large",
+// 			"https://a1.muscache.com/im/pictures/69359019/7f376f3e_original.jpg?aki_policy=large"
+//     	]
+// 	}
+// ];
 
-window.attendees = [
-	{
-		name: "Charlene",
-		status: "paid",
-		notes: "Room for 2 more in my car"
-	},
-	{
-		name: "Kiki",
-		status: "unpaid",
-		notes: "Leaving Saturday"
-	}
-];
+// window.attendees = [
+// 	{
+// 		name: "Charlene",
+// 		status: "paid",
+// 		notes: "Room for 2 more in my car"
+// 	},
+// 	{
+// 		name: "Kiki",
+// 		status: "unpaid",
+// 		notes: "Leaving Saturday"
+// 	}
+// ];
 
-window.packing = [
-	{
-		thingsToBring: "Dinner Saturday",
-		whosBringingIt: "Gabe",
-		notes: "Carnitas!"
-	},
-	{
-		thingsToBring: "Settler's of Catan",
-		whosBringingIt: "Myshel",
-		notes: "Game night! Woooooo!"
-	},
-	{
-		thingsToBring: "Catnip",
-		whosBringingIt: "Charlene",
-		notes: "Meow"
-	} 
-];
+// window.packing = [
+// 	{
+// 		thingsToBring: "Dinner Saturday",
+// 		whosBringingIt: "Gabe",
+// 		notes: "Carnitas!"
+// 	},
+// 	{
+// 		thingsToBring: "Settler's of Catan",
+// 		whosBringingIt: "Myshel",
+// 		notes: "Game night! Woooooo!"
+// 	},
+// 	{
+// 		thingsToBring: "Catnip",
+// 		whosBringingIt: "Charlene",
+// 		notes: "Meow"
+// 	} 
+// ];
 
-window.details = [
-	{
-	text: "Muffin apple pie bear claw muffin croissant sweet donut pie. Cotton candy soufflé caramels icing cake puddingdonut. Halvah biscuit toffee pudding tiramisu. Icing cookie liquorice macaroon gummies candy caramels sugar plum croissant. Danish gummies caramels danish topping candy jelly-o gummi bears. Lemon drops cake candy cake. Caramels gingerbread topping. Candy tiramisu dessert sesame snaps. Sugar plum chupa chups powder donut caramels. Muffin candy icing jelly beans. Powder fruitcake cake carrot cake marshmallow lollipop cake tiramisu. Tootsie roll cake apple pie.\n\nGummies jelly-o cheesecake. Muffin dragée cake croissant dessert wafer cheesecake caramels carrot cake. Marzipan gummi bears liquorice carrot cake marshmallow apple pie chupa chups gummies. Wafer cookie jelly tiramisu wafer cake jelly beans cookie. Brownie macaroon bear claw. Apple pie oat cake cookie biscuit croissant jelly beans lollipop. Candy icing sugar plum cupcake halvah fruitcake. Sesame snaps cake icing sweet gummies. Croissant tart bear claw. Sesame snaps cupcake croissant gummi bears gummies apple pie. Oat cake toffee cake halvah gingerbread muffin. Lemon drops danish toffee chupa chups sesame snaps carrot cake chocolate cake oat cake cupcake. Marzipan jelly beans candy candy canes.\n\nSesame snaps brownie sweet cheesecake topping. Bear claw cookie jelly beans jelly-o bonbon liquorice caramels. Bear claw muffin bonbon toffee chocolate jelly chupa chups brownie marzipan. Pastry oat cake dragée powder marshmallow lollipop. Marzipan jelly beans macaroon. Cookie tootsie roll dragée dessert dessert apple pie danish cupcake. Bonbon macaroon sweet candy canes gingerbread liquorice marshmallow bonbon marzipan. Dragée gingerbread jelly lemon drops jelly cake toffee. Gummi bears cake tiramisu brownie. Chocolate halvah pie caramels carrot cake. Candy chocolate bar lemon drops. Bonbon powder brownie. Oat cake oat cake cheesecake dessert cake.\n\nDragée chupa chups dessert gummi bears pudding carrot cake oat cake. Pie sugar plum lollipop lemon drops macaroon. Pastry oat cake caramels halvah. Topping jelly beans toffee caramels jujubes danish wafer. Candy toffee candy oat cake gummies toffee sugar plum. Toffee powder sugar plum macaroon chupa chups brownie cotton candy pudding sweet roll. Biscuit carrot cake bear claw sweet sweet roll biscuit liquorice. Carrot cake dessert chocolate cake oat cake. Topping chocolate tart ice cream powder oat cake. Tart halvah toffee tootsie roll carrot cake cookie oat cake cake. Tart macaroon caramels brownie tootsie roll. Fruitcake tiramisu ice cream. Chocolate soufflé sugar plum gummies gingerbread. Jelly beans liquorice caramels fruitcake ice cream fruitcake sugar plum apple pie."
-	}
-];
+// window.details = [
+// 	{
+// 	text: "Muffin apple pie bear claw muffin croissant sweet donut pie. Cotton candy soufflé caramels icing cake puddingdonut. Halvah biscuit toffee pudding tiramisu. Icing cookie liquorice macaroon gummies candy caramels sugar plum croissant. Danish gummies caramels danish topping candy jelly-o gummi bears. Lemon drops cake candy cake. Caramels gingerbread topping. Candy tiramisu dessert sesame snaps. Sugar plum chupa chups powder donut caramels. Muffin candy icing jelly beans. Powder fruitcake cake carrot cake marshmallow lollipop cake tiramisu. Tootsie roll cake apple pie.\n\nGummies jelly-o cheesecake. Muffin dragée cake croissant dessert wafer cheesecake caramels carrot cake. Marzipan gummi bears liquorice carrot cake marshmallow apple pie chupa chups gummies. Wafer cookie jelly tiramisu wafer cake jelly beans cookie. Brownie macaroon bear claw. Apple pie oat cake cookie biscuit croissant jelly beans lollipop. Candy icing sugar plum cupcake halvah fruitcake. Sesame snaps cake icing sweet gummies. Croissant tart bear claw. Sesame snaps cupcake croissant gummi bears gummies apple pie. Oat cake toffee cake halvah gingerbread muffin. Lemon drops danish toffee chupa chups sesame snaps carrot cake chocolate cake oat cake cupcake. Marzipan jelly beans candy candy canes.\n\nSesame snaps brownie sweet cheesecake topping. Bear claw cookie jelly beans jelly-o bonbon liquorice caramels. Bear claw muffin bonbon toffee chocolate jelly chupa chups brownie marzipan. Pastry oat cake dragée powder marshmallow lollipop. Marzipan jelly beans macaroon. Cookie tootsie roll dragée dessert dessert apple pie danish cupcake. Bonbon macaroon sweet candy canes gingerbread liquorice marshmallow bonbon marzipan. Dragée gingerbread jelly lemon drops jelly cake toffee. Gummi bears cake tiramisu brownie. Chocolate halvah pie caramels carrot cake. Candy chocolate bar lemon drops. Bonbon powder brownie. Oat cake oat cake cheesecake dessert cake.\n\nDragée chupa chups dessert gummi bears pudding carrot cake oat cake. Pie sugar plum lollipop lemon drops macaroon. Pastry oat cake caramels halvah. Topping jelly beans toffee caramels jujubes danish wafer. Candy toffee candy oat cake gummies toffee sugar plum. Toffee powder sugar plum macaroon chupa chups brownie cotton candy pudding sweet roll. Biscuit carrot cake bear claw sweet sweet roll biscuit liquorice. Carrot cake dessert chocolate cake oat cake. Topping chocolate tart ice cream powder oat cake. Tart halvah toffee tootsie roll carrot cake cookie oat cake cake. Tart macaroon caramels brownie tootsie roll. Fruitcake tiramisu ice cream. Chocolate soufflé sugar plum gummies gingerbread. Jelly beans liquorice caramels fruitcake ice cream fruitcake sugar plum apple pie."
+// 	}
+// ];
 
 
 var TitleSection = React.createClass({
@@ -127,6 +127,7 @@ var TitleSection = React.createClass({
 		var titleInput = this.refs.titleInput;
 		var titleText = titleInput.value;
 		title = titleText;
+		$.post(window.location.pathname + '/title', {title: titleText})
 		renderApp();
 	},
 	enterSubmitTitle: function (event) {
@@ -216,9 +217,24 @@ var VacationChoice = React.createClass({
 		var linkInput = this.refs.linkInput;
 		var linkUrl = linkInput.value;
 		$.getJSON("airbnbInfo?url=" + linkUrl, function (data) {
-			choices[i] = data;
+			choices[i].location = data.location;
+			choices[i].price = data.price;
+			choices[i].image = data.image;
+			choices[i].description = data.description;
   			choices[i].likes = 0;
   			choices[i].link = linkUrl;
+  			choices[i].booked = data.booked;
+  			choices[i].images = data.images;
+  			$.post('/choices/' + choices[i].id, {
+  				location: choices[i].location,
+  				price: choices[i].price,
+  				image: choices[i].image,
+  				description: choices[i].description,
+  				likes: choices[i].likes,
+  				link: choices[i].link,
+  				booked: choices[i].booked,
+  				images: choices[i].images
+  			})
   			renderApp();
 		});
 		linkInput.value = "";
@@ -231,6 +247,8 @@ var VacationChoice = React.createClass({
 	toggleBooked: function () {
 		var i = this.props.index;
 		choices[i].booked = true;
+		$.post('/choices/' + choices[i].id, {
+  				booked: choices[i].booked})
 		renderApp();
 	}
 })
@@ -239,9 +257,11 @@ var Booked = React.createClass({
 	render: function () {
 		var i = this.props.index;
 		var imageElements = [];
-		for (var j = 0; j < choices[i].images.length; j++) {
+		var allImages = choices[i].images
+		var imagesArr = allImages.split('\n')
+		for (var j = 0; j < imagesArr.length; j++) {
 			imageElements.push(
-				<BookedImages indexj={j} index={i} key={j}/>
+				<BookedImages indexj={j} index={i} key={j} imagesArr={imagesArr}/>
 			)
 		}
 		return (
@@ -256,16 +276,19 @@ var Booked = React.createClass({
 	unBook: function () {
 		var i = this.props.index;
 		choices[i].booked = false;
+		$.post('/choices/' + choices[i].id, {
+  				booked: choices[i].booked})
 		renderApp();
 	}
 })
 
 var BookedImages = React.createClass({
 	render: function () {
-		var i = this.props.index
+		var i = this.props.index;
 		var j = this.props.indexj;
+		var imagesArr = this.props.imagesArr;
 		return (
-			<img src={choices[i].images[j]}/> 
+			<img src={imagesArr[j]}/> 
 		)
 	}
 })
@@ -585,14 +608,14 @@ var Details = React.createClass({
 			var view =
 				<div id="details-section">
 					<h2>Details:</h2>
-					<textarea defaultValue={details[0].text} type="text" ref="detailsInput"></textarea>
+					<textarea defaultValue={details} type="text" ref="detailsInput"></textarea>
 					<button onClick={this.handleClick}>Submit</button>
 				</div>
 		} else {	
 			view = 
 				<div id="details-section">
 					<h2>Details:</h2>
-					<p>{details[0].text}</p>
+					<p>{details}</p>
 					<button onClick={this.toggleEditOn}>Edit</button>
 				</div>
 		}
@@ -603,8 +626,8 @@ var Details = React.createClass({
 	saveDetails: function () {
 		var detailsInput = this.refs.detailsInput;
 		var detailsText = detailsInput.value;
-		details[0].text = detailsText;
-		console.log(details[0].text)
+		details = detailsText;
+		console.log(details)
 		renderApp();
 	},
 	toggleEditOn: function () {
@@ -651,4 +674,23 @@ window.renderApp = function() {
   ReactDOM.render(<App />, document.getElementById("container"));
 }
 
-renderApp();
+//function to find window.location
+console.log(window.location.pathname + '/trip')
+
+$.getJSON(window.location.pathname + '/trip', function (data) {
+	window.title = data.trip.title
+	window.choices = data.choices;
+	window.images = data.choices.images;
+	window.attendees = data.attendees;
+	window.packing = data.packing;
+	window.details = data.trip.details;
+	renderApp();
+})
+
+
+
+
+
+
+
+
