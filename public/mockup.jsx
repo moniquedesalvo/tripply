@@ -105,7 +105,7 @@ var TitleSection = React.createClass({
 		}
 	},
 	render: function () {
-		if (this.state.isEditing === true) {
+		if (this.state.isEditing === true || title === "") {
 			var titleDiv = 
 				<div className="title-section">
 					<h1><input type="text" ref="titleInput" placeholder="Add title and dates" onKeyDown={this.enterSubmitTitle}></input></h1>
@@ -115,7 +115,7 @@ var TitleSection = React.createClass({
 				<div className="title-section">
 					<h1 onClick={this.clickToEdit}>{title}</h1>
 				</div>
-		}	
+		}
 		return (
 			titleDiv
 		);

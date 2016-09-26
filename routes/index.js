@@ -115,5 +115,4 @@ router.post('/choices/:choiceId', function (req, res, next) {
         })
 })
 
-
 module.exports = router;
