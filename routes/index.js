@@ -44,9 +44,9 @@ function getAirbnbListing(listingId, callback) {
 router.get('/:id/trip' , function (req, res, next) {
     knex('trip').select().where('tripLinkId', req.params.id).then(function(trips) {
         var trip = trips[0];
-        knex('choices').select().where('trip_id', trip.id).then(function(choices) {
-            knex('attendees').select().where('trip_id', trip.id).then(function(attendees) {
-                knex('packing').select().where('trip_id', trip.id).then(function(packing) {
+        knex('choices').select().where('trip_id', trip.id).orderBy('id').then(function(choices) {
+            knex('attendees').select().where('trip_id', trip.id).orderBy('id').then(function(attendees) {
+                knex('packing').select().where('trip_id', trip.id).orderBy('id').then(function(packing) {
                     res.json({
                         trip: trip,
                         choices: choices,
@@ -70,7 +70,7 @@ var generateLinkId = function () {
 
 router.get('/newTrip', function (req, res, next) {
     var newTripLink = generateLinkId();
-    knex('trip').insert({tripLinkId: newTripLink}).returning(['id']).then(function(trip) {
+    knex('trip').insert({tripLinkId: newTripLink, title: ""}).returning(['id']).then(function(trip) {
         knex('choices').insert({trip_id: trip[0].id}).then(function(choice) {
             knex('choices').insert({trip_id: trip[0].id}).then(function(choice) {
                 knex('choices').insert({trip_id: trip[0].id}).then(function(choice) {
@@ -79,21 +79,21 @@ router.get('/newTrip', function (req, res, next) {
             })
         })
     })
-})  
+})
 
 router.get('/:tripLinkId', function (req, res, next) {
     res.sendFile('mockup.html', {root: 'public'});
 })
 
 router.post('/:tripLinkId/title', function (req, res, next) {
-    knex('trip').update({title: req.body.title}).where({tripLinkId: req.params.tripLinkId})
-        .then(function(data) {
-            res.send('👍');
-        })
+    knex('trip').update({title: req.body.title}).where({tripLinkId: req.params.tripLinkId}).then(function(data) {
+        res.send('👍');
+    })
 })
 
 router.post('/:tripLinkId/details', function (req, res, next) {
-    knex('trip').update({details: req.body.details}).where({tripLinkId: req.params.tripLinkId})
+    knex('trip').update({details: req.body.details})
+    .where({tripLinkId: req.params.tripLinkId})
         .then(function(data) {
             res.send('👍');
         })
@@ -114,5 +114,61 @@ router.post('/choices/:choiceId', function (req, res, next) {
             res.send('👍');
         })
 })
+
+router.post("/:tripLinkId/attendees/create", function (req, res, next) {
+    // do something with knex to insert a new attendees row
+    console.log('got here')
+    knex('trip').select().where('tripLinkId', req.params.tripLinkId).then(function(trips) {
+        var trip = trips[0];
+        knex('attendees').insert({
+            name: req.body.name,
+            status: req.body.status,
+            notes: req.body.notes,
+            trip_id: trip.id
+        }).returning(['id']).then(function(data) {
+            res.json(data[0].id);
+        })
+    })
+});
+
+router.post('/attendees/:attendeeId', function (req, res, next) {
+    knex('attendees').update({
+        name: req.body.name,
+        status: req.body.status,
+        notes: req.body.notes
+    }).where({id: req.params.attendeeId})
+        .then(function(data) {
+            res.send('👍');
+        })
+})
+
+router.post('/packing/:packingItemId', function (req, res, next) {
+    knex('packing').update({
+        thingsToBring: req.body.thingsToBring,
+        whosBringingIt: req.body.whosBringingIt,
+        notes: req.body.notes
+    }).where({id: req.params.packingItemId})
+        .then(function(data) {
+            res.send('👍');
+        })
+})
+
+router.post("/:tripLinkId/packingItem/create", function (req, res, next) {
+    knex('trip').select().where('tripLinkId', req.params.tripLinkId).then(function(trips) {
+        var trip = trips[0];
+        knex('packing').insert({
+            thingsToBring: req.body.thingsToBring,
+            whosBringingIt: req.body.whosBringingIt,
+            notes: req.body.notes,
+            trip_id: trip.id
+        }).returning(['id']).then(function(data) {
+            console.log(data, 'this is data from packing')
+
+            res.json(data[0].id);
+        })
+    })
+});
+
+
 
 module.exports = router;

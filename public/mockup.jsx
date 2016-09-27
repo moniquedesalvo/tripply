@@ -148,9 +148,11 @@ var VacationChoices = React.createClass({
 		var isEditing = this.state.isEditing;
 		var locationElements = [];
 		for (var i = 0; i < choices.length; i++) {
-			locationElements.push(
-				<VacationChoice index={i} key={i} isEditing={isEditing}/>
-			);
+			// if (choices[i].location !== null) {
+				locationElements.push(
+					<VacationChoice index={i} key={i} isEditing={isEditing}/>
+				);
+			// }
 		}
 
 		if (isEditing === true) {
@@ -193,18 +195,18 @@ var VacationChoice = React.createClass({
 		if (isEditing === true) {
 			var view = 
 				<div className="vacation-choice" key={i}>
-					<h3>{choices[i].location} - {choices[i].price} Per Night</h3>
+					<h3>{choices[i].location} <span className="price">{choices[i].price}</span>&nbsp;</h3>
 					<a href={choices[i].link}><div className="choice-img"><img src={choices[i].image}/></div></a>
-					<h3>{choices[i].description}</h3>
+					<p>{choices[i].description}</p>
 					<VoteSection index={i}/><button onClick={this.toggleBooked}>Booked It!</button><br/>
 					<input type="text" ref="linkInput" onKeyDown={this.enterSubmit} placeholder="Paste AirBnb Url"></input>
 				</div>
 		} else {
 			view = 
 				<div className="vacation-choice" key={i}>
-					<h3>{choices[i].location} - {choices[i].price} Per Night</h3>
+					<h3>{choices[i].location} <span className="price">{choices[i].price}</span>&nbsp;</h3>
 					<a href={choices[i].link}><div className="choice-img"><img src={choices[i].image}/></div></a>
-					<h3>{choices[i].description}</h3>
+					<p>{choices[i].description}</p>
 					<VoteSection index={i}/>
 				</div>
 		}
@@ -302,9 +304,9 @@ var VoteSection = React.createClass({
 	render: function () {
 		var i = this.props.index;
 		if (this.state.hasVoted === true) {
-			var heartFill = <span className="heart"><img onClick={this.removeVote} src="images/heart-filled_thick.png"/><h3>{choices[i].likes}</h3></span>
+			var heartFill = <div className="heart"><img onClick={this.removeVote} src="images/heart-filled_thick.png"/>{choices[i].likes}</div>
 		} else {
-			heartFill = <span className="heart"><img onClick={this.addVote} src="images/heart-outline_thick.png"/><h3>{choices[i].likes}</h3></span>
+			heartFill = <div className="heart"><img onClick={this.addVote} src="images/heart-outline_thick.png"/>{choices[i].likes}</div>
 		}
 		return (
 			heartFill
@@ -315,6 +317,8 @@ var VoteSection = React.createClass({
 		if (this.state.hasVoted === false) {
 			this.setState({hasVoted: true})
 			choices[i].likes += 1;
+			$.post('/choices/' + choices[i].id, {
+  				likes: choices[i].likes})
 			renderApp()	
 		}
 	},
@@ -323,6 +327,8 @@ var VoteSection = React.createClass({
 		if (this.state.hasVoted === true) {
 			this.setState({hasVoted: false})
 			choices[i].likes -= 1;
+			$.post('/choices/' + choices[i].id, {
+  				likes: choices[i].likes})
 			renderApp()	
 		}
 	}
@@ -360,16 +366,23 @@ var AttendeesSection = React.createClass({
 	},
 
 	addAttendees: function () {
+		var i = this.props.index;
 		var nameInput = this.refs.nameInput;
 		var nameText = nameInput.value;
-		attendees.push(
-			{
-				name: nameText,
-				status: "unpaid",
-				notes: "+"
-			}
-		)
+		var attendee = {
+			name: nameText,
+			status: "unpaid",
+			notes: ""
+		};
+		attendees.push(attendee);
 		nameInput.value = "";
+		$.post(window.location.pathname + '/attendees/create', {
+			name: nameText,
+			status: "unpaid",
+			notes: ""
+  		}, function (res) {
+  			attendee.id = res;
+		});
 		renderApp();
 	},
 	enterSubmitName: function (event) {
@@ -413,16 +426,19 @@ var AttendeesRow = React.createClass({
 		} else {
 			attendees[i].status = "unpaid";
 		}
+		$.post('/attendees/' + attendees[i].id, {
+  			status: attendees[i].status
+  		});
 		renderApp();
 	},
 	toggleEditOnName: function () {
 		if (!this.state.isEditingName) {
-			this.setState({isEditingName: true})
+			this.setState({isEditingName: true});
 		}
 	},
 	toggleEditOnNotes: function () {
 		if (!this.state.isEditingNotes) {
-			this.setState({isEditingNotes: true})
+			this.setState({isEditingNotes: true});
 		}
 	},
 	toggleEditOffName: function () {
@@ -432,6 +448,9 @@ var AttendeesRow = React.createClass({
 			var nameInput = this.refs.nameInput;
 			var nameText = nameInput.value;
 			attendees[i].name = nameText;
+			$.post('/attendees/' + attendees[i].id, {
+  				name: attendees[i].name
+  			});
 		}
 	},
 	toggleEditOffNotes: function () {
@@ -441,6 +460,9 @@ var AttendeesRow = React.createClass({
 			var notesInput = this.refs.notesInput;
 			var notesText = notesInput.value;
 			attendees[i].notes = notesText;
+			$.post('/attendees/' + attendees[i].id, {
+  				notes: attendees[i].notes
+  			});
 		}
 	},
 	enterSubmitName: function (event) {
@@ -488,14 +510,21 @@ var PackingSection = React.createClass({
 	addToPacking: function () {
 		var thingsInput = this.refs.thingsInput;
 		var thingsText = thingsInput.value;
-		packing.push(
-			{
-				thingsToBring: thingsText,
-				whosBringingIt: "+",
-				notes: "+"
-			}
-		)
+		var packingItem = {
+			thingsToBring: thingsText,
+			whosBringingIt: "",
+			notes: ""
+		};
 		thingsInput.value = "";
+		packing.push(packingItem);
+		$.post(window.location.pathname + '/packingItem/create', {
+			thingsToBring: thingsText,
+			whosBringingIt: "",
+			notes: ""
+  		}, function (res) {
+  			console.log(res)
+  			packingItem.id = res;
+		});
 		renderApp();
 	},
 	enterSubmitThings: function (event) {
@@ -560,6 +589,9 @@ var PackingRow = React.createClass({
 			var thingsInput = this.refs.thingsInput;
 			var thingsText = thingsInput.value;
 			packing[i].thingsToBring = thingsText;
+			$.post('/packing/' + packing[i].id, {
+  				thingsToBring: packing[i].thingsToBring
+  			});
 		}
 	},
 	toggleEditOffWho: function () {
@@ -569,6 +601,9 @@ var PackingRow = React.createClass({
 			var whoInput = this.refs.whoInput;
 			var whoText = whoInput.value;
 			packing[i].whosBringingIt = whoText;
+			$.post('/packing/' + packing[i].id, {
+  				whosBringingIt: packing[i].whosBringingIt
+  			});
 		}
 	},
 	toggleEditOffNotes: function () {
@@ -578,6 +613,9 @@ var PackingRow = React.createClass({
 			var notesInput = this.refs.notesInput;
 			var notesText = notesInput.value;
 			packing[i].notes = notesText;
+			$.post('/packing/' + packing[i].id, {
+  				notes: packing[i].notes
+  			});
 		}
 	},
 	enterSubmitThings: function (event) {

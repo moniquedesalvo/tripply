@@ -1,27 +1,30 @@
 body {
 	margin: 0px;
 	font-family: sans-serif;
-	color: #525252;
+	color: #434b4c;
 	background-color: #F5F5F5;
 }
 
 nav {
-	height: 75px;
-	background-color: #128fa9;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	background-color: #d7e3e5;
+	margin-bottom: 35px;
 }
 
 nav h1 {
 	margin: 0px;
-	padding-top: 20px;
-	padding-left: 20px;
-	font-family: sans-serif;
+	padding-left: 10%;
+	font-family: 'Lobster', cursive, sans-serif;
 	font-size: 36px;
-	color: #e3dfe1;
+	/*color: #e3dfe1;*/
+	color: #128fa9;
 	display: block;
 }
 
 td {
-	width: 500px;
+	width: 200px;
+	height: 20px;
 }
 
 input {
@@ -29,8 +32,8 @@ input {
 }
 
 input:focus {
-	border: 3px solid #128fa9;
-	outline: none;
+	outline: 3px solid #128fa9;
+	/*outline: none;*/
 }
 
 #main {
@@ -55,8 +58,8 @@ input:focus {
 }
 
 .choice-img {
-	background-color: #e3dfe1;
-	margin: 15px;
+	background-color: #d7e3e5;
+	margin: 15px 0;
 	width: 345px;
 	height: 230px;
 }
@@ -83,25 +86,30 @@ input:focus {
 }
 
 #location-section .vacation-choice .heart img {
-	height: 25px;
-	width: 25px;
-	padding: 2px 2px 0px 15px;
-}
-
-#location-section .vacation-choice .heart h3 {
-	padding-left: 10px;
-	padding-top: 5px;
+	height: 20px;
+	width: 20px;
+	padding-right: 8px;
+	vertical-align: top;
 }
 
 #location-section .vacation-choice .heart {
-	display: flex;
+	margin-top: 15px;
+	font-size: 20px;	
 }
 
+.vacation-choice {
+	margin-right: 15px;
+}
 
 .vacation-choice h3 {
-	padding-left: 15px;
+	/*padding-left: 15px;*/
 	margin-top: 0px;
 	margin-bottom: 0px;
+}
+
+.price {
+	color: #999;
+	float: right;
 }
 
 #attendees-section, #packing-section {
@@ -144,6 +152,18 @@ textarea:focus {
 #details-section p {
 	white-space: pre-wrap;
 	width: 700px;
+}
+
+.tripply-main {
+	width: 60%;
+	margin: auto;
+}
+
+.tripply-main h1 {
+	font-family: 'Lobster', cursive, sans-serif;
+	font-size: 150px;
+	text-align: center;
+	color: #128fa9;
 }
 
 footer {
