@@ -1,103 +1,3 @@
-// window.title = "Fall Vacation: October 21-24"
-
-// window.choices = [
-// 	{ 
-// 		location: "Big Sur, CA",
-// 		price: "$240",
-// 		image: "https://a2.muscache.com/im/pictures/3c8d3246-f27c-4044-9a2e-e0a6c78d5296.jpg?aki_policy=large",
-// 		description: "Gorgeous Ocen Front Property", 
-// 		likes: 2, 
-// 		link: "",
-// 		booked: false,
-// 		images: [
-// 			"https://a2.muscache.com/im/pictures/69358559/eecdacaa_original.jpg?aki_policy=large",
-// 			"https://a2.muscache.com/im/pictures/69358098/e82386b8_original.jpg?aki_policy=large",
-// 			"https://a2.muscache.com/im/pictures/69358624/6a91c232_original.jpg?aki_policy=large",
-// 			"https://a0.muscache.com/im/pictures/69358840/7047fd2e_original.jpg?aki_policy=large",
-// 			"https://a1.muscache.com/im/pictures/69358675/b64d97da_original.jpg?aki_policy=large",
-// 			"https://a1.muscache.com/im/pictures/69358901/7df3b111_original.jpg?aki_policy=large",
-// 			"https://a0.muscache.com/im/pictures/69358957/b3b72c44_original.jpg?aki_policy=large",
-// 			"https://a1.muscache.com/im/pictures/69359019/7f376f3e_original.jpg?aki_policy=large"
-//     	]
-// 	},
-// 	{
-// 		location: "Big Sur, CA",
-// 		price: "$355",
-// 		image: "https://a2.muscache.com/im/pictures/43006829/fbb07cff_original.jpg?aki_policy=large",
-// 		description: "4 Bedroom Cottage in the Woods",
-// 		likes: 5,
-// 		link: "",
-// 		booked: false,
-// 		images: [
-// 			"https://a2.muscache.com/im/pictures/69358559/eecdacaa_original.jpg?aki_policy=large",
-// 			"https://a2.muscache.com/im/pictures/69358098/e82386b8_original.jpg?aki_policy=large",
-// 			"https://a2.muscache.com/im/pictures/69358624/6a91c232_original.jpg?aki_policy=large",
-// 			"https://a0.muscache.com/im/pictures/69358840/7047fd2e_original.jpg?aki_policy=large",
-// 			"https://a1.muscache.com/im/pictures/69358675/b64d97da_original.jpg?aki_policy=large",
-// 			"https://a1.muscache.com/im/pictures/69358901/7df3b111_original.jpg?aki_policy=large",
-// 			"https://a0.muscache.com/im/pictures/69358957/b3b72c44_original.jpg?aki_policy=large",
-// 			"https://a1.muscache.com/im/pictures/69359019/7f376f3e_original.jpg?aki_policy=large"
-//     	]
-// 	},
-// 	{
-// 		location: "Monterey, CA",
-// 		price: "$534",
-// 		image: "https://a0.muscache.com/im/pictures/36575928/b6ec565d_original.jpg?aki_policy=xx_large",
-// 		description: "Lovely Home with Hot Tub",
-// 		likes: 3,
-// 		link: "",
-// 		booked: false,
-// 		images: [
-// 			"https://a2.muscache.com/im/pictures/69358559/eecdacaa_original.jpg?aki_policy=large",
-// 			"https://a2.muscache.com/im/pictures/69358098/e82386b8_original.jpg?aki_policy=large",
-// 			"https://a2.muscache.com/im/pictures/69358624/6a91c232_original.jpg?aki_policy=large",
-// 			"https://a0.muscache.com/im/pictures/69358840/7047fd2e_original.jpg?aki_policy=large",
-// 			"https://a1.muscache.com/im/pictures/69358675/b64d97da_original.jpg?aki_policy=large",
-// 			"https://a1.muscache.com/im/pictures/69358901/7df3b111_original.jpg?aki_policy=large",
-// 			"https://a0.muscache.com/im/pictures/69358957/b3b72c44_original.jpg?aki_policy=large",
-// 			"https://a1.muscache.com/im/pictures/69359019/7f376f3e_original.jpg?aki_policy=large"
-//     	]
-// 	}
-// ];
-
-// window.attendees = [
-// 	{
-// 		name: "Charlene",
-// 		status: "paid",
-// 		notes: "Room for 2 more in my car"
-// 	},
-// 	{
-// 		name: "Kiki",
-// 		status: "unpaid",
-// 		notes: "Leaving Saturday"
-// 	}
-// ];
-
-// window.packing = [
-// 	{
-// 		thingsToBring: "Dinner Saturday",
-// 		whosBringingIt: "Gabe",
-// 		notes: "Carnitas!"
-// 	},
-// 	{
-// 		thingsToBring: "Settler's of Catan",
-// 		whosBringingIt: "Myshel",
-// 		notes: "Game night! Woooooo!"
-// 	},
-// 	{
-// 		thingsToBring: "Catnip",
-// 		whosBringingIt: "Charlene",
-// 		notes: "Meow"
-// 	} 
-// ];
-
-// window.details = [
-// 	{
-// 	text: "Muffin apple pie bear claw muffin croissant sweet donut pie. Cotton candy soufflé caramels icing cake puddingdonut. Halvah biscuit toffee pudding tiramisu. Icing cookie liquorice macaroon gummies candy caramels sugar plum croissant. Danish gummies caramels danish topping candy jelly-o gummi bears. Lemon drops cake candy cake. Caramels gingerbread topping. Candy tiramisu dessert sesame snaps. Sugar plum chupa chups powder donut caramels. Muffin candy icing jelly beans. Powder fruitcake cake carrot cake marshmallow lollipop cake tiramisu. Tootsie roll cake apple pie.\n\nGummies jelly-o cheesecake. Muffin dragée cake croissant dessert wafer cheesecake caramels carrot cake. Marzipan gummi bears liquorice carrot cake marshmallow apple pie chupa chups gummies. Wafer cookie jelly tiramisu wafer cake jelly beans cookie. Brownie macaroon bear claw. Apple pie oat cake cookie biscuit croissant jelly beans lollipop. Candy icing sugar plum cupcake halvah fruitcake. Sesame snaps cake icing sweet gummies. Croissant tart bear claw. Sesame snaps cupcake croissant gummi bears gummies apple pie. Oat cake toffee cake halvah gingerbread muffin. Lemon drops danish toffee chupa chups sesame snaps carrot cake chocolate cake oat cake cupcake. Marzipan jelly beans candy candy canes.\n\nSesame snaps brownie sweet cheesecake topping. Bear claw cookie jelly beans jelly-o bonbon liquorice caramels. Bear claw muffin bonbon toffee chocolate jelly chupa chups brownie marzipan. Pastry oat cake dragée powder marshmallow lollipop. Marzipan jelly beans macaroon. Cookie tootsie roll dragée dessert dessert apple pie danish cupcake. Bonbon macaroon sweet candy canes gingerbread liquorice marshmallow bonbon marzipan. Dragée gingerbread jelly lemon drops jelly cake toffee. Gummi bears cake tiramisu brownie. Chocolate halvah pie caramels carrot cake. Candy chocolate bar lemon drops. Bonbon powder brownie. Oat cake oat cake cheesecake dessert cake.\n\nDragée chupa chups dessert gummi bears pudding carrot cake oat cake. Pie sugar plum lollipop lemon drops macaroon. Pastry oat cake caramels halvah. Topping jelly beans toffee caramels jujubes danish wafer. Candy toffee candy oat cake gummies toffee sugar plum. Toffee powder sugar plum macaroon chupa chups brownie cotton candy pudding sweet roll. Biscuit carrot cake bear claw sweet sweet roll biscuit liquorice. Carrot cake dessert chocolate cake oat cake. Topping chocolate tart ice cream powder oat cake. Tart halvah toffee tootsie roll carrot cake cookie oat cake cake. Tart macaroon caramels brownie tootsie roll. Fruitcake tiramisu ice cream. Chocolate soufflé sugar plum gummies gingerbread. Jelly beans liquorice caramels fruitcake ice cream fruitcake sugar plum apple pie."
-// 	}
-// ];
-
-
 var TitleSection = React.createClass({
 	getInitialState: function () {
 		return {
@@ -108,7 +8,7 @@ var TitleSection = React.createClass({
 		if (this.state.isEditing === true || title === "") {
 			var titleDiv = 
 				<div className="title-section">
-					<h1><input type="text" ref="titleInput" placeholder="Add title and dates" defaultValue={title} onKeyDown={this.enterSubmitTitle}></input></h1>
+					<h1><input type="text" ref="titleInput" placeholder="Add a title" defaultValue={title} onKeyDown={this.enterSubmitTitle} onBlur={this.toggleEditOff} ></input></h1>
 				</div>
 		} else {
 			titleDiv = 
@@ -120,8 +20,23 @@ var TitleSection = React.createClass({
 			titleDiv
 		);
 	},
+	componentDidUpdate: function () {
+		if (this.state.isEditing) {
+			this.refs.titleInput.focus();
+		}
+	},
 	clickToEdit: function () {
 		this.setState({isEditing: true});
+	},
+	toggleEditOff: function () {
+		if (this.state.isEditing) {
+			this.setState({isEditing: false})
+			var titleInput = this.refs.titleInput;
+			var titleText = titleInput.value;
+			title = titleText;
+			$.post(window.location.pathname + '/title', {title: titleText})
+			renderApp();
+		}
 	},
 	addTitle: function () {
 		var titleInput = this.refs.titleInput;
@@ -140,8 +55,10 @@ var TitleSection = React.createClass({
 
 var VacationChoices = React.createClass({
 	getInitialState: function () {
-		return {
-			isEditing: false
+		if (choices[0].location) {
+			return {isEditing: false}
+		} else {
+			return {isEditing: true}
 		}
 	},
 	render: function () {
@@ -156,27 +73,25 @@ var VacationChoices = React.createClass({
 		}
 
 		if (isEditing === true) {
-			var topEditButton = null;
+			var editButton = null;
 		} else {
-			var topEditButton = <button onClick={this.editModeOn}>Edit</button>;
+			editButton = <button onClick={this.editModeOn}>Edit</button>;
 		}
 		if (isEditing === false) {
-			var bottomEditButton = null;
+			var doneEditingButton = null;
 		} else {
-			bottomEditButton = <button onClick={this.editModeOff}>Done Editing</button>
+			doneEditingButton = <button onClick={this.editModeOff}>Done Editing</button>
 		}
 
  		return (
  			<div>
 	 			<div>
-	 				<h2>Vote on a Place to Stay: {topEditButton}</h2>
+	 				<h2>Vote on a Place to Stay {editButton}{doneEditingButton}</h2>
 	 			</div>
 				<div id="locations">
 					{locationElements}	
 				</div>
-				<div>
-					{bottomEditButton}
-				</div>
+		
 			</div>
 		);
 	},
@@ -198,7 +113,7 @@ var VacationChoice = React.createClass({
 					<h3>{choices[i].location} <span className="price">{choices[i].price}</span>&nbsp;</h3>
 					<a href={choices[i].link}><div className="choice-img"><img src={choices[i].image}/></div></a>
 					<p>{choices[i].description}</p>
-					<VoteSection index={i}/><button onClick={this.toggleBooked}>Booked It!</button><br/>
+					<div className="vote-book"><VoteSection index={i}/><button onClick={this.toggleBooked}>Booked It!</button></div><br/>
 					<input type="text" ref="linkInput" onKeyDown={this.enterSubmit} placeholder="Paste AirBnb Url"></input>
 				</div>
 		} else {
@@ -207,7 +122,7 @@ var VacationChoice = React.createClass({
 					<h3>{choices[i].location} <span className="price">{choices[i].price}</span>&nbsp;</h3>
 					<a href={choices[i].link}><div className="choice-img"><img src={choices[i].image}/></div></a>
 					<p>{choices[i].description}</p>
-					<VoteSection index={i}/>
+					<div className="vote-book"><VoteSection index={i}/></div>
 				</div>
 		}
 		return (
@@ -271,7 +186,9 @@ var Booked = React.createClass({
 				<div id="booked">
 		        	{imageElements}    
 				</div>
-	        	<button onClick={this.unBook}>Back</button>
+				<div id="booked-button">
+	        		<button onClick={this.unBook}>Back to Choices</button>
+	        	</div>
 	        </div>
         )
 	},
@@ -344,7 +261,7 @@ var AttendeesSection = React.createClass({
 		}
 		return (
 			<div id="attendees-section">
-				<h2>Attendees:</h2>
+				<h2>Attendees</h2>
 				<table>
 					<tbody>
 			            <tr>
@@ -353,14 +270,10 @@ var AttendeesSection = React.createClass({
 			                <th>Notes</th>
 			            </tr>
 						{attendeesElements}
-						<tr>
-							<td><input type="text" ref="nameInput" placeholder="Add a name" onKeyDown={this.enterSubmitName}></input></td>
-							<td></td>
-							<td></td>
-						</tr>
 					</tbody>
 	            </table>
-	            <button onClick={this.addAttendees}>Add</button>
+	            <input type="text" ref="nameInput" placeholder="Add a name" onKeyDown={this.enterSubmitName}></input>
+				<button onClick={this.addAttendees}>Add</button>
           	</div>
 		)
 	},
@@ -419,6 +332,14 @@ var AttendeesRow = React.createClass({
 			</tr>
 		)
 	},
+	componentDidUpdate: function () {
+		if (this.state.isEditingName) {
+			this.refs.nameInput.focus();
+		}
+		if (this.state.isEditingNotes) {
+			this.refs.notesInput.focus();
+		}
+	},
 	togglePaid: function () {
 		var i = this.props.index;
 		if (attendees[i].status === "unpaid") {
@@ -475,7 +396,7 @@ var AttendeesRow = React.createClass({
 			this.toggleEditOffNotes();
 		}
 	}
-})
+ })
 
 var PackingSection = React.createClass({
 	render: function () {
@@ -487,7 +408,7 @@ var PackingSection = React.createClass({
 		}
 		return (
 			<div id="packing-section">
-				<h2>Packing:</h2>
+				<h2>Packing</h2>
 				<table>
 					<tbody>
 			            <tr>
@@ -496,14 +417,10 @@ var PackingSection = React.createClass({
 			                <th>Notes</th>
 			            </tr>
 						{packingElements}
-						<tr>
-							<td><input type="text" ref="thingsInput" placeholder="Add a thing" onKeyUp={this.enterSubmitThings}></input></td>
-							<td></td>
-							<td></td>
-						</tr>
 					</tbody>
 	            </table>
-	            <button onClick={this.addToPacking}>Add</button>
+	            <input type="text" ref="thingsInput" placeholder="Add a thing" onKeyUp={this.enterSubmitThings}></input>
+				<button onClick={this.addToPacking}>Add</button>
           	</div>
 		)
 	},
@@ -566,6 +483,17 @@ var PackingRow = React.createClass({
 				<td onClick={this.toggleEditOnNotes} onBlur={this.toggleEditOffNotes} onKeyDown={this.enterSubmitNotes}>{notesElement}</td>
 			</tr>
 		)
+	},
+	componentDidUpdate: function () {
+		if (this.state.isEditingThingsToBring) {
+			this.refs.thingsInput.focus();
+		}
+		if (this.state.isEditingWhosBringingIt) {
+			this.refs.whoInput.focus();
+		}
+		if (this.state.isEditingNotes) {
+			this.refs.notesInput.focus();
+		}
 	},
 	toggleEditOnThings: function () {
 		if (!this.state.isEditingThingsToBring) {
@@ -637,22 +565,24 @@ var PackingRow = React.createClass({
 
 var Details = React.createClass({
 	getInitialState: function () {
-		return {
-			isEditing: false
+		if (details)  {
+			return {isEditing: false}
+		} else {
+			return {isEditing: true}
 		}
 	},
 	render: function () {
 		if (this.state.isEditing === true) {
 			var view =
 				<div id="details-section">
-					<h2>Details:</h2>
+					<h2>Details</h2>
 					<textarea defaultValue={details} type="text" ref="detailsInput"></textarea>
-					<button onClick={this.handleClick}>Submit</button>
+					<button onClick={this.handleClick}>Done</button>
 				</div>
 		} else {	
 			view = 
 				<div id="details-section">
-					<h2>Details:</h2>
+					<h2>Details</h2>
 					<p>{details}</p>
 					<button onClick={this.toggleEditOn}>Edit</button>
 				</div>
@@ -665,7 +595,7 @@ var Details = React.createClass({
 		var detailsInput = this.refs.detailsInput;
 		var detailsText = detailsInput.value;
 		details = detailsText;
-		console.log(details)
+		$.post(window.location.pathname + '/details', {details: detailsText})
 		renderApp();
 	},
 	toggleEditOn: function () {
@@ -691,9 +621,9 @@ var App = React.createClass({
 				<div id="location-section">
 					<TitleSection />
 					{this.findBooked()}
+					<Details />
 					<AttendeesSection />
 					<PackingSection />
-					<Details />
 				</div>
 			</div>
 		)

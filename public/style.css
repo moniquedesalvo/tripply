@@ -1,6 +1,6 @@
 body {
 	margin: 0px;
-	font-family: sans-serif;
+	font-family: 'Muli', sans-serif;
 	color: #434b4c;
 	background-color: #F5F5F5;
 }
@@ -8,18 +8,18 @@ body {
 nav {
 	padding-top: 12px;
 	padding-bottom: 12px;
-	background-color: #d7e3e5;
 	margin-bottom: 35px;
+	background-color: #128fa9;
+
 }
 
 nav h1 {
 	margin: 0px;
 	padding-left: 10%;
 	font-family: 'Lobster', cursive, sans-serif;
-	font-size: 36px;
-	/*color: #e3dfe1;*/
-	color: #128fa9;
+	font-size: 35px;
 	display: block;
+	color: #d7e3e5;
 }
 
 td {
@@ -27,13 +27,67 @@ td {
 	height: 20px;
 }
 
+button {
+  background: #128fa9;
+  border-radius: 3px;
+  color: #d7e3e5;
+  font-size: 15px;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+  border: none;
+}
+
+button:hover {
+  background: #1fb2cf;
+  text-decoration: none;
+  border: none;
+}
+
+button:focus {
+	outline: none;
+}
+
 input {
+	color: #434b4c;
+	font-family: 'Muli', sans-serif;
+	border-radius: 5px;
 	width: 80%;
 }
 
 input:focus {
-	outline: 3px solid #128fa9;
-	/*outline: none;*/
+	border-radius: 5px;
+	border: 2px solid #128fa9;
+	outline: none;
+	border-style: solid;
+}
+
+input::selection {
+	background: #d7e3e5;
+	border-radius: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: #d7e3e5;
+}
+
+footer {
+	height: 75px;
+}
+
+h2 button {
+	margin-left: 15px;
+}
+
+textarea {
+	border-radius: 5px;
+	border: 1px solid #d4d4d4;
+
+}
+
+textarea:focus {
+	border: 2px solid #128fa9;
+	outline: none;
+	border-radius: 5px;
 }
 
 #main {
@@ -41,8 +95,9 @@ input:focus {
 	margin: auto;
 }
 
-.title-section button {
-	height: 20px;
+.title-section input {
+	height: 30px;
+	font-size: 30px;
 }
 
 #locations {
@@ -62,13 +117,18 @@ input:focus {
 	margin: 15px 0;
 	width: 345px;
 	height: 230px;
+	border-radius: 5px;
 }
 
 .choice-img img {
 	display: block;
     margin-left: auto;
     margin-right: auto;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
 }
+
 
 #vchoice-edit-mode {
 	display: flex;
@@ -80,11 +140,6 @@ input:focus {
 	display: flex;
 }
 
-#choice-inputs input {
-	width: 345px;
-	margin: 15px;
-}
-
 #location-section .vacation-choice .heart img {
 	height: 20px;
 	width: 20px;
@@ -94,15 +149,21 @@ input:focus {
 
 #location-section .vacation-choice .heart {
 	margin-top: 15px;
+	margin-bottom: 15px;
 	font-size: 20px;	
 }
 
 .vacation-choice {
 	margin-right: 15px;
+	width: 345px;
+}
+
+.vacation-choice input {
+	height: 20px;
+	font-size: 15px;
 }
 
 .vacation-choice h3 {
-	/*padding-left: 15px;*/
 	margin-top: 0px;
 	margin-bottom: 0px;
 }
@@ -112,9 +173,30 @@ input:focus {
 	float: right;
 }
 
+#booked-button button {
+	margin-top: 15px;
+}
+
 #attendees-section, #packing-section {
 	width: 80%;
 	margin: 0;
+}
+
+#attendees-section td input, #packing-section td input {
+	height: 20px;
+	width: 100%;
+	margin-right: 15px;
+}
+
+#attendees-section input, #packing-section input {
+	height: 20px;
+	width: 25%;
+	margin-right: 15px;
+	font-size: 15px;
+}
+
+#attendees-section button, #packing-section button {
+	margin-top: 15px;
 }
 
 #attendees-section th, #packing-section th {
@@ -123,6 +205,7 @@ input:focus {
 
 #attendees-section table, #packing-section table {
 	width: 80%;
+	min-width: 500px;
 }
 
 #booked {
@@ -131,7 +214,7 @@ input:focus {
 	width: 100%;
 	display: flex;
 	overflow: hidden;
-
+	border-radius: 5px;
 }
 
 #booked img {
@@ -141,12 +224,18 @@ input:focus {
 #details-section textarea {
 	width: 700px;
 	height: 200px;
-
+	font-family: 'Muli', sans-serif;
+	font-size: 15px;
+	resize: none;
 }
 
-textarea:focus {
-	border: 3px solid #128fa9;
-	outline: none;
+#details-section textarea::selection {
+	background: #d7e3e5;
+}
+
+#details-section button {
+	display: block;
+	margin-top: 15px;
 }
 
 #details-section p {
@@ -155,18 +244,30 @@ textarea:focus {
 }
 
 .tripply-main {
-	width: 60%;
+	font-family: 'Lobster', cursive, sans-serif;
+	width: 80%;
 	margin: auto;
+	margin-top: 20%;
+	text-align: center;
 }
 
 .tripply-main h1 {
-	font-family: 'Lobster', cursive, sans-serif;
 	font-size: 150px;
 	text-align: center;
 	color: #128fa9;
+	margin-bottom: 0;
 }
 
-footer {
-	height: 75px;
+.tripply-main p {
+	font-size: 40px;
 }
+
+.tripply-main button {
+	height: 50px;
+	width: 200px;
+}
+
+
+
+
 
