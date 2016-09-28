@@ -29,14 +29,12 @@ var TitleSection = React.createClass({
 		this.setState({isEditing: true});
 	},
 	toggleEditOff: function () {
-		if (this.state.isEditing) {
-			this.setState({isEditing: false})
-			var titleInput = this.refs.titleInput;
-			var titleText = titleInput.value;
-			title = titleText;
-			$.post(window.location.pathname + '/title', {title: titleText})
-			renderApp();
-		}
+		this.setState({isEditing: false})
+		var titleInput = this.refs.titleInput;
+		var titleText = titleInput.value;
+		title = titleText;
+		$.post(window.location.pathname + '/title', {title: titleText})
+		renderApp();
 	},
 	addTitle: function () {
 		var titleInput = this.refs.titleInput;
