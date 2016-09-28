@@ -82,7 +82,11 @@ router.get('/newTrip', function (req, res, next) {
 })
 
 router.get('/:tripLinkId', function (req, res, next) {
-    res.sendFile('mockup.html', {root: 'public'});
+    res.sendFile('trip.html', {root: 'public'});
+})
+
+router.get('/', function (req, res, next) {
+    res.sendFile('index.html', {root: 'public'});
 })
 
 router.post('/:tripLinkId/title', function (req, res, next) {

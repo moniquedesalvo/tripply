@@ -22,9 +22,19 @@ nav h1 {
 	color: #d7e3e5;
 }
 
-td {
+nav h1 a {
+	text-decoration: none;
+	color: #d7e3e5;
+}
+
+td, th {
 	width: 200px;
 	height: 20px;
+}
+
+td {
+	cursor: pointer;
+	padding-right: 10px;
 }
 
 button {
@@ -35,6 +45,7 @@ button {
   padding: 5px 10px 5px 10px;
   text-decoration: none;
   border: none;
+  cursor: pointer;
 }
 
 button:hover {
@@ -76,6 +87,7 @@ footer {
 
 h2 button {
 	margin-left: 15px;
+	cursor: pointer;
 }
 
 textarea {
@@ -105,6 +117,10 @@ textarea:focus {
 }
 
 #location-section img {
+	height: 230px;
+}
+
+#location-section #booked img {
 	height: 230px;
 }
 
@@ -175,6 +191,7 @@ textarea:focus {
 
 #booked-button button {
 	margin-top: 15px;
+	cursor: pointer;
 }
 
 #attendees-section, #packing-section {
@@ -197,6 +214,7 @@ textarea:focus {
 
 #attendees-section button, #packing-section button {
 	margin-top: 15px;
+	cursor: pointer;
 }
 
 #attendees-section th, #packing-section th {
@@ -206,6 +224,8 @@ textarea:focus {
 #attendees-section table, #packing-section table {
 	width: 80%;
 	min-width: 500px;
+	max-width: 720px;
+	border-spacing: 0;
 }
 
 #booked {
@@ -215,10 +235,6 @@ textarea:focus {
 	display: flex;
 	overflow: hidden;
 	border-radius: 5px;
-}
-
-#booked img {
-	height: inherit;
 }
 
 #details-section textarea {
@@ -256,6 +272,7 @@ textarea:focus {
 	text-align: center;
 	color: #128fa9;
 	margin-bottom: 0;
+	margin-top: 0;
 }
 
 .tripply-main p {
@@ -265,6 +282,8 @@ textarea:focus {
 .tripply-main button {
 	height: 50px;
 	width: 200px;
+	cursor: pointer;
+	font-family: 'Muli', sans-serif;
 }
 
 

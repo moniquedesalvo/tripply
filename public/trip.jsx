@@ -207,7 +207,7 @@ var BookedImages = React.createClass({
 		var j = this.props.indexj;
 		var imagesArr = this.props.imagesArr;
 		return (
-			<img src={imagesArr[j]}/> 
+			<a href={choices[i].link}><img src={imagesArr[j]}/></a>
 		)
 	}
 })
@@ -221,9 +221,9 @@ var VoteSection = React.createClass({
 	render: function () {
 		var i = this.props.index;
 		if (this.state.hasVoted === true) {
-			var heartFill = <div className="heart"><img onClick={this.removeVote} src="images/heart-filled_thick.png"/>{choices[i].likes}</div>
+			var heartFill = <div className="heart"><img onClick={this.removeVote} src="images/heart-filled_thick.png"/>{choices[i].likes || 0}</div>
 		} else {
-			heartFill = <div className="heart"><img onClick={this.addVote} src="images/heart-outline_thick.png"/>{choices[i].likes}</div>
+			heartFill = <div className="heart"><img onClick={this.addVote} src="images/heart-outline_thick.png"/>{choices[i].likes || 0}</div>
 		}
 		return (
 			heartFill
